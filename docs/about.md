@@ -1,0 +1,7 @@
+# Sobre
+
+Esta seção é para explicar o porquê deste site. Durante minha trajetória acadêmica, sempre me deparei com conteúdos, vídeos e diversos outros tipos de recursos extremamente rasos. É como se cada pessoa estivesse apenas copiando e colando conteúdos de outras pessoas e apenas replicando sem sequer realmente querer entender o que é aquilo. Isso sempre me incomodou e, por isso, sempre investi um bom tempo em pesquisar bastante sobre os assuntos para tentar realmente entender como cada coisa funciona. Sem decoreba. Sem explicar sem entender.
+
+Juntamente com esse vício em entender as coisas, eu notei que as pessoas gostavam quando eu explicava as coisas. Provavelmente o fato de eu ir atrás de entender realmente as coisas, facilitou minha forma de deixar esses conceitos simples. E, pensando em unir esses dois mundos, surgiu este site. A ideia é funcionar como um repositório de conhecimento, onde irei colocar diversas pesquisas que eu já tenho e futuras também, onde irei compartilhar meus aprendizados da forma mais ridícula possível (o aprendizado não precisa ser chato).
+
+Não prometo materiais frequentes até porque isso será apenas um hobby meu, mas tentarei ao máximo desvendar cada coisa para que qualquer pessoa, com um mínimo de conhecimento, consiga entender.

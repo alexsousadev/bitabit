@@ -1,0 +1,48 @@
+site_name: Bit a Bit
+theme:
+  name: material
+  palette: 
+
+      # Palette toggle for light mode
+      - scheme: default
+        toggle:
+          icon: material/brightness-7 
+          name: Switch to dark mode
+
+      # Palette toggle for dark mode
+      - scheme: slate
+        toggle:
+          icon: material/brightness-4
+          name: Switch to light mode
+
+  features: 
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.instant.preview
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+
+plugins: 
+  - search
+  - blog
+  - tags:
+      tags_file: tags.md
+nav:
+  - Home: index.md
+  - About: about.md
+  - Blog: blog/index.md
+  - Tags: tags.md
+
