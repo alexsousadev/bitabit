@@ -1,6 +1,8 @@
-# Bit a Bit
 
----
+<figure markdown="span">
+![](./bitabit.png){ align=center, width="200"}
+</figure>
+
 
 ## :material-compass: Por Onde Começar?
 
