@@ -90,7 +90,7 @@ A brecha permitia que hackers pudessem "pescar" até 64 KB de informações de d
 
 A correção consistiu em adicionar, basicamente, uma única condição `if` antes de copiar os dados, dizendo ao computador: "Ei, antes de copiar, verifique se o tamanho que o usuário disse que mandou é realmente o tamanho que chegou". Bizarro, né?
 
-- Em 2015, bastava receber um MMS (vídeo por mensagem) e o seu Android era hackeado antes mesmo de você abrir a mensagem.](https://github.com/ksparakis/Stagefright-Explained) O erro era um estouro de buffer na biblioteca de mídia escrita em C++.
+- [Em 2015, bastava receber um MMS (vídeo por mensagem) e o seu Android era hackeado antes mesmo de você abrir a mensagem.](https://github.com/ksparakis/Stagefright-Explained) O erro era um estouro de buffer na biblioteca de mídia escrita em C++.
 
 No Rust, a checagem de limites (Bounds Checking) é o padrão. Para você fazer o que o C faz (ler memória proibida), você teria que usar uma palavra-chave chamada `unsafe` e se esforçar muito para fazer a bobagem.
 
