@@ -7,3 +7,4 @@ Diferente dos artigos finais do blog, aqui você encontrará notas brutas, desaf
 ## Estudos Atuais
 
 - [Criando um Emulador de Intel 8080](posts/intel8080-emulador/intel8080-emulador.md)
+- [Como funciona um sensor de Impressão Digital](posts/como_funciona_digital/como_funciona_digital.md)
