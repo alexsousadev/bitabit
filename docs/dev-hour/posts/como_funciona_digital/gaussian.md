@@ -213,3 +213,4 @@ Basicamente, a combinação de **Tamanho do Kernel** e **Sigma** define o que vo
 - https://lvelho.impa.br/ip09/demos/jbu/filtros.html
 - https://medium.com/turing-talks/implementa%C3%A7%C3%A3o-do-desfoque-gaussiano-d6e21e314920
 - https://datahacker.rs/opencv-average-and-gaussian-filter/
+- https://setosa.io/ev/image-kernels/

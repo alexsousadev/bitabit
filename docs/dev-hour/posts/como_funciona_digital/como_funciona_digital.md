@@ -71,12 +71,13 @@ Abaixo podemos ver um ADC de 6 bits convertendo a variação da voltagem analóg
 Logo após a captura, o sistema realiza a "normalização", que serve justamente para uniformizar e corrigir esses níveis de cinza da imagem original, equilibrando índices de iluminação, que é o que veremos a seguir...
 ## 2) Preparando (Normalização)
 
-
-### 2.1) Aplicação dos Filtros
-
 Após capturar essa "foto" inicial, o sistema precisa prepará-la, pois a imagem bruta costuma vir com ruídos, como sujeira no dedo ou falhas na iluminação. Esse passo é chamado de pré-processamento.
 
-Nele, ocorre primeiro a normalização, que serve para equilibrar os níveis de cinza da imagem, deixando-a com uma iluminação uniforme.
+### 2.1) Normalização
+
+Ocorre primeiro a normalização, que serve para equilibrar os níveis de cinza da imagem, deixando-a com uma iluminação uniforme.
+
+### 2.2) Aplicação dos Filtros
 
 Depois, aplicam-se filtros em sequência para remover componentes irrelevantes e destacar bem o contraste entre as linhas pretas (cristas) e o fundo branco (vales), criando uma matriz binária clara.
 
@@ -89,7 +90,6 @@ Depois, aplicam-se filtros em sequência para remover componentes irrelevantes e
 <label>A ideia é remover as imperfeições</label>
 </figure>
 
-
 **Em seguida, aplica-se o Filtro de Gabor**, que é especializado em detectar padrões direcionais (como as linhas da digital). Ele realça as cristas e vales, melhorando o contraste após o Gaussiano ter removido os ruídos. Abaixo podemos ver o antes (esquerda) e depois (direita) da aplicação do Filtro de Gabor:
 
 - [Filtro de Gabor](./gabor.md)
@@ -100,7 +100,7 @@ Depois, aplicam-se filtros em sequência para remover componentes irrelevantes e
 
 Em resumo, esta técnica é usada para remover as escalas de cinza, destacando as cristas e vales de forma monocromática (só preto e branco).
 
-### 2.2) Afinamento
+### 2.3) Afinamento
 
 Após os filtros de pré-processamento, ocorre o processo de **Afinamento.** Este é um processo onde há a remoção de pixels das linhas da digital sem alterar sua estrutura básica. O objetivo é criar um "esqueleto" da imagem, onde as cristas (as linhas da digital) tenham a largura reduzida ao mínimo possível, ou seja, à espessura de apenas um pixel.
 
@@ -147,3 +147,14 @@ Para garantir a segurança, esse template é criptografado (geralmente usando o 
 ![](./img/leitura_digital.png){ align=center, width="500"}
 </figure>
 
+
+---
+
+## Histórico de Evolução
+
+### 2025-12-23 - Pesquisa Inicial
+- Entendimento básico sobre cristas/vales, tipos de sensores, ADC, normalização, filtros, afinamento, minúcias e matching.
+
+### 2025-12-26 - Entendimento das Fórmulas de Capacitância e Filtro Gaussiano
+- Fundamentos de capacitância com fórmulas
+- Entendimento básico do filtro Gaussiano e preparamento para o filtro de Gabor
