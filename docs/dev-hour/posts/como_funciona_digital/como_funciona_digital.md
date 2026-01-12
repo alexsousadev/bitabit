@@ -7,7 +7,7 @@ A nossa pele é formada por camadas, e o encontro entre a derme (mais interna) e
 ![](./img/cristas_vales.png){ align=center, width="500"}
 </figure>
 
-O segredo da identificação está no fato de que essas linhas não são perfeitas. Em alguns pontos, uma crista pode parar de repente ou se dividir em duas,**e são justamente essas "falhas" no caminho das cristas e vales que criam as características únicas de cada pessoa.** Sem essa alternância entre altos e baixos, o sensor veria apenas uma mancha lisa e não conseguiria distinguir ninguém.
+O segredo da identificação está no fato de que essas linhas não são perfeitas. Em alguns pontos, uma crista pode parar de repente ou se dividir em duas, **e são justamente essas "falhas" no caminho das cristas e vales que criam as características únicas de cada pessoa.** Sem essa alternância entre altos e baixos, o sensor veria apenas uma mancha lisa e não conseguiria distinguir ninguém.
 
 
 ## 1) Captando a imagem
@@ -18,6 +18,8 @@ Agora que entendemos que o seu dedo possui esse relevo de cristas (partes altas)
 - Sensores Ultrassônicos
 
 Vamos focar inicialmente nos capacitivos, pois são mais comuns em dispositivos portáteis devido ao seu tamanho compacto e baixo consumo de energia. Esse tipo de sensor "sente" a eletricidade do seu corpo através de uma placa composta por milhares de minúsculos dispositivos semicondutores integrados. Quando você encosta o dedo na superfície do sensor, a sua pele atua como uma das placas de um capacitor, enquanto o sensor metálico é a outra:
+
+> Lembrano que um capacitor é um componente eletrônico que armazena energia na forma de um campo elétrico. Ele é formado por duas placas condutoras separadas por um material isolante, conhecido como dielétrico. Quando uma tensão elétrica é aplicada entre as placas, uma carga elétrica se acumula em cada uma delas, criando um campo elétrico entre elas.
 
 <figure markdown="span">
 ![](./img//capacitive-sensor-finger.jpg){ align=center, width="400"}
@@ -75,11 +77,7 @@ Após capturar essa "foto" inicial, o sistema precisa prepará-la, pois a imagem
 
 ### 2.1) Normalização
 
-Ocorre primeiro a normalização, que serve para equilibrar os níveis de cinza da imagem, deixando-a com uma iluminação uniforme.
-
-### 2.2) Aplicação dos Filtros
-
-Depois, aplicam-se filtros em sequência para remover componentes irrelevantes e destacar bem o contraste entre as linhas pretas (cristas) e o fundo branco (vales), criando uma matriz binária clara.
+Ocorre primeiro a normalização, que serve para equilibrar os níveis de cinza da imagem, deixando-a com uma iluminação uniforme. Aplicam-se filtros para remover componentes irrelevantes e destacar bem o contraste entre as linhas pretas (cristas) e o fundo branco (vales), criando uma matriz binária clara.
 
 **Primeiro, aplica-se o Filtro Gaussiano**, que suaviza a imagem removendo ruídos e pequenas imperfeições que possam interferir na identificação. Ele "limpa" a imagem bruta, preparando-a para o próximo passo.
 
