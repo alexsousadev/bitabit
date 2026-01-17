@@ -1,16 +1,18 @@
 ---
 date: 2025-01-01
 categories:
-    - Emulação
+    - Eletrônica
 tags:
-    - Intel 8080
-    - Emulador
-    - Assembly
+    - E-ink
+    - Kindle
+    - Hardware
 ---
 
 # Como funciona a tela do Kindle (E-ink)
 
-Voce ja deve ter visto um kindle e notou a diferença na "tela" dele em comparação com os smartphones. Pois é, não é falha dos seus olhos, é porque realmente aquilo não é um tela, e sim uma fomra diferente de visualização chamada E-ink (ou tinta eletrônica).
+Você já deve ter visto um e-reader (como o Kindle) e notou a diferença na "tela" dele em comparação com os smartphones. Pois é, não é falha dos seus olhos, é porque realmente aquilo não é uma tela, e sim uma forma diferente de visualização chamada E-ink (ou tinta eletrônica).
+
+> O termo e-reader vem do inglês e é a junção de “e”, que significa electronic (eletrônico), e “reader”, que significa leitor. Dessa forma, e-reader pode ser traduzido como “leitor eletrônico”.
 
 ## O que é o E-ink?
 
@@ -47,6 +49,12 @@ Aliás, o princípio é semelhante àquele quadro mágico de brinquedo para cria
 2. **Reflexão vs. Emissão:** Telas comuns são como lanternas apontadas para o seu rosto. Já o E-ink funciona como um livro físico: ele reflete a luz solar ou da lâmpada.
 > Resultado: Quanto mais sol bater na tela, melhor a visibilidade. Além disso, a ausência de luz direta e de cintilação (flicker) reduz drasticamente o cansaço visual.
 
+## Por que a tela "pisca"? (Ghosting)
+
+Se você já usou um e-reader, deve ter notado que, de vez em quando, a tela inverte as cores (fica toda preta) e depois volta ao normal. Isso não é defeito, é faxina!
+
+Como estamos lidando com partículas físicas se movendo, às vezes fica um "rastro" da página anterior, o chamado **Ghosting**. Aquele "piscar" da tela é um **Full Refresh**: o sistema força todas as partículas a se moverem para garantir que nenhum pigmento ficou perdido no caminho, deixando o texto nítido novamente.
+
 ## Só funciona com preto e branco?
 
 Não, é possível sim ter mais cores.
@@ -73,11 +81,11 @@ Antes de chegar nessa estratégia, houve diversas outras abordagens para tentar 
 - **Filtros (2010):** A primeira tecnologia para consumidores foi o Triton. Ele usava um filtro de vidro com quadrados coloridos (RGB) sobre a tinta preta e branca. No entanto, como as telas e-ink não emitem luz própria (são reflexivas), o filtro de vidro "roubava" muita luz, deixando a tela escura e com resolução muito baixa. O mercado não aceitou bem.
 - **Multipigmentos (2016):** Em vez de filtros, os cientistas tentaram colocar partículas de cores diferentes (Ciano, Magenta, Amarelo e Branco) dentro de cada microcápsula. Essa tecnologia, chamada ACeP (Advanced Color ePaper) ou E Ink Gallery, conseguia criar até 50 mil cores, mas era muito lenta para atualizar a página, sendo usada inicialmente apenas em sinalização digital (cartazes).
 
-- **A nova tentativa do filtro (2019):** A grande virada para os consumidores ocorreu quando a uma equipe decidiu redesenhar a ideia do filtro (do antigo Triton), mas de uma forma muito mais avançada:
+- **A nova tentativa do filtro (2019):** A grande virada para os consumidores ocorreu quando uma equipe decidiu redesenhar a ideia do filtro (do antigo Triton), mas de uma forma muito mais avançada:
 
     - Em vez de uma camada extra de vidro, eles imprimiram o filtro colorido diretamente no filme plástico da tela e adicionaram uma luz frontal (front light) projetada especificamente para rebater na tinta e passar pelo filtro com eficiência.
 
-    Com isso, o primeiro lote da tecnologia Kaleido saiu da fábrica no final de 2019. Em 2020, os primeiros smartphones e e-readers (como o Hisense A5C e o PocketBook Color) chegaram ao mercado.
+    Com isso, o primeiro lote da tecnologia Kaleido saiu da fábrica no final de 2019. Em 2020, os primeiros smartphones e e-readers (como o Hisense A5C e o PocketBook Color) chegaram ao mercado. Hoje já estamos na geração **Kaleido 3** (2022), que melhorou significativamente a saturação das cores e a resolução, permitindo histórias em quadrinhos muito mais vibrantes.
 
 > Podemos ver a história mais detalhada na página [IEEE Spectrum - How E Ink Developed Full-Color e-Paper ](https://spectrum.ieee.org/how-e-ink-developed-full-color-epaper)
 
@@ -104,7 +112,7 @@ O marco científico que apresentou o E-ink ao mundo foi publicado na prestigiada
 ![](./img/paper-ilustracao.png){ align=center, width="500"}
 </figure>
 
-Mas, mesmo mesmo do artigo na Nature, Jacobson e seus alunos, junto com investidores, fundaram a E Ink Corporation em 1997 para comercializar a tecnologia. Durante anos, o E-ink foi uma "tecnologia em busca de um produto". Ele foi usado primeiro em placas de sinalização de lojas (como a J.C. Penney) antes de chegar aos leitores de livros. Muitas pessoas acham que o Kindle foi o primeiro, mas houve pioneiros antes dele:
+Mas, antes mesmo do artigo na Nature, Jacobson e seus alunos, junto com investidores, fundaram a E Ink Corporation em 1997 para comercializar a tecnologia. Durante anos, o E-ink foi uma "tecnologia em busca de um produto". Ele foi usado primeiro em placas de sinalização de lojas (como a J.C. Penney) antes de chegar aos leitores de livros. Muitas pessoas acham que o Kindle foi o primeiro, mas houve pioneiros antes dele:
 
 - **Sony Librié (2004):** O primeiro e-reader comercial com tela E-ink, lançado apenas no Japão. Ele era elegante, mas tinha um sistema de "aluguel" de livros que os usuários odiavam.
 
