@@ -14,25 +14,123 @@ Recentemente eu apresentei meu TCC voltado para emulação, mais especificamente
 
 # O que é o Intel 8080
 
+<figure markdown="span">
+![](./img/intel8080_chip.jpg){ align=center, width="300"}
+</figure>
+
 O Intel 8080 é um microprocessador de 8 bits lançado pela Intel em abril de 1974, considerado o primeiro processador mainstream da empresa e um marco na história da computação. Desenvolvido por Federico Faggin e Masatoshi Shima, o 8080 veio em encapsulamento DIP de 40 pinos e custava US$ 360 inicialmente, impulsionando o mercado de microcomputadores.
 
 > DIP significa Dual In-line Package, e é um nome que damos a um tipo de encapsulamento para circuitos integrados com pinos dispostos em duas fileiras paralelas.
 
-# Arquitetura
+# 1) Arquitetura
+
+## 1.1) Pinagem
+
+<figure markdown="span">
+![](./img/pinout_8080.png){ align=center, width="400"}
+</figure>
+
+
+Para entender sua pinagem, o ideal é dividir os pinos em 4 categorias funcionais: Barramento de Endereços, Barramento de Dados, Sinais de Controle e Alimentação/Clock.
+
+### 1.1.1) Barramento de Endereços (Address Bus)
+
+São 16 pinos unidirecionais ( $A_0$ a $A_{15}$ ) que permitem ao processador endereçar até $2^{16}$ bytes ($64\text{ KB}$) de memória ou portas de I/O. Os respectivos pinos são de 25 a 27 e depois de 29  a 40, como é mostrado na imagem abaixo.
+
+<figure markdown="span">
+![](./img/barramento_end.png){ align=center, width="400"}
+</figure>
+
+> O nome do pino é bem intuitivo, pois A vem de "Adress" (que é a palavra "Endereço" em português).
+
+### 1.1.2) Barramento de Dados (Data Bus)
+
+São 8 pinos bidirecionais ($D_0$ a $D_7$) usados para transferir dados entre a CPU, a memória e periféricos. Durante o início de cada ciclo de máquina (sinal SYNC), esses pinos também emitem uma "palavra de status" que descreve o tipo de ciclo que está sendo executado.
+
+<figure markdown="span">
+![](./img/barramento_dados.png){ align=center, width="400"}
+</figure>
+
+> Também bem claro, pois é D de "Data", que é dados em português.
+
+### 1.1.3) Sinais de Controle e Estado
+Estes pinos gerenciam o fluxo de dados e a sincronização com o sistema.
+
+| Pino | Nome  | Descrição |
+| :--: | :---  | :--- |
+| 19   | SYNC  | Indica o início de um ciclo de máquina; o status é colocado no barramento de dados. |
+| 18   | /WR   | Write: Sinal de saída indicando que o barramento de dados contém informações para escrita. |
+| 17   | DBIN  | Data Bus In: Sinal de saída avisando que o barramento de dados está em modo de entrada. |
+| 16   | INTE  | Interrupt Enable: Indica o estado interno do flip-flop de habilitação de interrupção. |
+| 14   | INT   | Interrupt Request: Entrada para solicitação de interrupção externa. |
+| 13   | HOLD  | Entrada para solicitar que a CPU libere os barramentos (usado em DMA). |
+| 21   | HLDA  | Hold Acknowledge: Confirmação de que a CPU liberou os barramentos. |
+| 23   | READY | Entrada de sincronização para memórias ou periféricos mais lentos que a CPU. |
+| 24   | WAIT  | Indica que a CPU entrou em estado de espera (Wait State). |
+| 12   | RESET | Zera o contador de programa (PC) e reinicia a execução. |
+
+<figure markdown="span">
+![](./img/barramento_control.png){ align=center, width="400"}
+</figure>
+
+### 1.1.4) Alimentação e Clocks
+
+Diferente dos processadores modernos que usam apenas uma voltagem, o 8080 exigia três tensões diferentes e um clock de duas fases.
+
+> Em resumo, era 3 pinos para voltagem e 2 para clocks. Ele precisava dessas três tensões devido às limitações da tecnologia NMOS (N-channel Metal-Oxide-Semiconductor) da época.
+
+- **PARA ALIMENTAÇÃO**
+
+    | Pino | Nome | Tensão | Descrição |
+| :--: | :--- | :----: | :--- |
+| 28   | VDD  | +12V   | Alimentação principal para os transistores e circuitos de clock. |
+| 20   | VCC  | +5V    | Alimentação da lógica interna e interface com outros chips (TTL). |
+| 1    | VBB  | -5V    | Tensão de polarização do substrato (Pino crítico para evitar danos). |
+| 2    | GND  | 0V     | Terra / Referência comum do sistema. |
+
+    ---
+    Naquela época, os transistores "vazavam" bastante eletricidade. Se muita eletricidade vazasse, o chip esquentava ou os transistores ligavam sozinhos (o que causaria erros de cálculo).
+    A solução: Os $-5\text{V}$ serviam para "sugar" esse excesso de energia do terreno, mantendo-o estável. Era como uma bomba de drenagem.
+
+    Além disso, os transistores daquela época eram lentos para "abrir e fechar". Para que o processador conseguisse trabalhar na velocidade adequada, ele precisava de um "empurrão" forte.
+    A solução: Os $+12\text{V}$ forneciam essa pressão alta. Era como usar um motor potente de 12 volts para girar as engrenagens mais rápido do que um motor comum de 5 volts conseguiria.
+
+    O $+5\text{V}$ era a voltagem da "conversa". Todos os outros componentes do computador (como as memórias e teclados da época) usavam o padrão TTL, que só entendia sinais de $5\text{V}$.
+    Assim, o computador usava essa voltagem apenas para os seus pinos de saída e entrada.
+
+    ---
+    <figure markdown="span">
+    ![](./img/pinos_alim.png){ align=center, width="400"}
+    </figure>
+
+- **PARA OS CLOCKS**
+
+    | Pino | Nome | Nível  | Descrição |
+| :--: | :--- | :----: | :--- |
+| 22   | Φ1   | 0V-12V | Fase 1 do clock externo. Sincroniza as operações internas. |
+| 15   | Φ2   | 0V-12V | Fase 2 do clock externo. Deve ser não-sobreposta à Fase 1. |
+
+
+    <figure markdown="span">
+    ![](./img/pinos_clock.png){ align=center, width="400"}
+    </figure>
+
+    > Um processador executa milhões de passos por segundo. Imagine que a CPU precisa ler um número da memória e somá-lo a outro. Se ela tentar somar antes do número chegar, o resultado será um erro. O clock garante que o Passo A termine antes do Passo B começar. Ele define o Ciclo de Máquina: o tempo necessário para realizar uma operação básica.
+
+## 1.2) Diagrama de Blocos (Partes)
+
+O Intel 8080 é um microprocessador composto por 3 partes principais:
 
 <figure markdown="span">
 ![](./img/intel_8080_arch.png){ align=center, width="500"}
 </figure>
-
-
-O Intel 8080 é um microprocessador composto por cinco partes principais:
 
 1. 7 registradores de propósito geral e 2 específicos.
 2. Memória.
 5. Entrada/Saída (I/O).
 
 
-## Registradores
+###  1.2.1) Registradores
 
 O processador utiliza espaços de armazenamento interno chamados registradores para realizar cálculos e tomar decisões. No 8080 eles são:
 
@@ -41,7 +139,7 @@ O processador utiliza espaços de armazenamento interno chamados registradores p
 - **H e L**: Usados principalmente como um par de registradores de 16 bits para apontar para endereços de memória. O H armazena o byte mais significativo (MSB) e o L o menos significativo (LSB).
 
 ---
-### Representações dos Registradores
+#### REPRESENTAÇÕES DOS REGISTRADORES
 
 Nas instruções em si, cada registrador é referenciado por um número, que vai de 0 até 7. Então, se por exemplo queremos mover um valor do registrador B para o D, diremos: "Mova o conteúdo do registrador 000 para o registrador 010". A tabela abaixo mostra essa relação:
 
@@ -82,10 +180,19 @@ Além disso, temos dois registradores de controle:
 
 
 
-## Memória
+### 1.2.2) Memória
 
-- **Tamanho**: Possui 64 KB de memória.
-    > O DIP de 40 pintos possui 16 bits (permitindo endereçar 2¹⁶, que é os 64 KB) para o barramento de endereços e 8 bits para o barramento de dados.
+- **Tamanho**: 64 KB de memória.
+
+    > O DIP de 40 pintos possui 16 bits (permitindo endereçar 2¹⁶, que é os 64 KB) 
+
+Além disso, ele possuía 3 barramentos: de dados, endereços e controle.
+
+1. **Barramento de Endereços:** O barramento de endereços fornece endereçamento à memória (até 64K palavras de 8 bits) e aos 256 dispositivos de entrada e 256 dispositivos de saída. A0 é o bit de endereço menos significativo. O barramento de endereços possui 16 bits.
+
+2. **Barramento de Dados:** O barramento de dados fornece comunicação bidirecional entre a CPU, memória e dispositivos I/O para processar instruções e dados. Além disso, durante o primeiro ciclo de clock (estado) de cada ciclo de máquina, o Intel 8080A envia uma palavra de status descrevendo o ciclo de máquina atual no barramento de dados. D0 é o bit menos significativo. O barramento de dados possui 8 bits.
+
+3. **Barramento de Controle:** Consiste em 10 linhas que são usadas para transmitir sinais de controle que determinam a natureza e o funcionamento dos componentes da CPU.
 
 ### Modos de Endereçamento de Memória
 
