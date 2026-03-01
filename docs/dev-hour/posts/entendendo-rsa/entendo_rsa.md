@@ -32,8 +32,11 @@ Para entender melhor a importância disso, é necessário entender o que é crip
 Podemos definir a criptografia como o processo de codificar informações para protegê-las contra acesso não autorizado, transformando dados legíveis (texto simples) em formato ilegível (texto cifrado) usando algoritmos matemáticos. Para tornar os textos ilegíveis, temos basicamente 2 formas:
 
 - **Criptografia simétrica:** uma mesma chave é utilizada para criptografar e descriptografar.
+
     > Utilizada em VPNs, WPA (Redes Wi-Fi), Criptografia de disco (BitLocker, Veracrypt), entre outros.
+    
 - **Criptografia assimétrica:** utiliza duas chaves diferentes, uma para criptografar e outra para descriptografar.
+
     > Utilizada no SSL/TLS (HTTPS), Certificados digitais, PGP/GPG (Criptografia de email), SSH (Acesso remoto seguro), Blockchain, entre outros.
 
 
