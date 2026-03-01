@@ -75,7 +75,7 @@ Essa criptografia que utilizamos atualmente se baseia no fato de que não temos 
 
 O RSA é fundamentado em um ingrediente secreto: números primos. Esses números são considerados os "átomos" da matemática, porque dão origem a todos os outros números.
 
-> Como assim? Qualquer número composto é resultado da multiplicação de dois primos. Qualquer um. 15 = 3×5, 20 = 5×2×2.
+> Como assim? Qualquer número composto é resultado da multiplicação de primos. Qualquer um. 15 = 3×5, 20 = 5×2×2...
 
 <figure markdown="span">
 ![](./img/numeros_primos.png){ align=center, width="500"}
@@ -83,8 +83,100 @@ O RSA é fundamentado em um ingrediente secreto: números primos. Esses números
 
 Por esse motivo, são chamados de blocos de construção da matemática. Eles são os mais estudados pelos matemáticos porque são cobertos de mistérios. Por exemplo, é impossível predizer onde estará o próximo número; houve muitas tentativas ao longo da história, mas todas falharam. Eles parecem ser completamente aleatórios.
 
-E é aí que entra a ideia do RSA: multiplicação de primos. É fácil multiplicar dois números primos, mas é incrivelmente difícil descobrir quais números primos foram usados para formar esse número. 
-
-Isso é conhecido como uma **função de alçapão** ou uma **função unidirecional**. Embora seja fácil percorrer um caminho, é computacionalmente inviável percorrer o outro caminho.
+E é aí que entra a ideia do RSA: multiplicação de primos. É fácil multiplicar dois números primos, mas é incrivelmente difícil descobrir quais números primos foram usados para formar esse número. Isso é conhecido como uma **função de alçapão** ou uma **função unidirecional**. Embora seja fácil percorrer um caminho, é computacionalmente inviável percorrer o outro caminho.
 
 > Cozinhar um ovo é uma função unidirecional: é fácil ferver um ovo, mas não é possível desfervê-lo.
+
+Tudo começa com dois números primos. No mundo real, eles têm centenas de dígitos; aqui usaremos dois primos pequenos para facilitar o acompanhamento.
+
+---
+---
+O RSA é classificado em bits, se referindo justamente ao tamanho do resultado da multiplicação dos primos. O mais utilizado atualmente é o **RSA-2048.**
+
+| RSA (bits) | Dígitos de cada primo (aprox.) | Dígitos de n (aprox.) |
+|------------|--------------------------------|-----------------------|
+| 512 bits   | 77 dígitos                     | 155 dígitos           |
+| 1024 bits  | 155 dígitos                    | 309 dígitos           |
+| 2048 bits  | 309 dígitos                    | 617 dígitos           |
+| 3072 bits  | 463 dígitos                    | 926 dígitos           |
+| 4096 bits  | 617 dígitos                    | 1234 dígitos          |
+---
+---
+
+Nosso primos serão esses:
+
+- ### $p = 5$
+- ### $q = 11$
+
+Multiplicamos os dois para obter o **módulo** $n$:
+
+$$
+n = p \times q = 5 \times 11 = 55
+$$
+
+Em seguida, calculamos o **totiente** — conceito explicado abaixo.
+
+---
+
+### 3.3) O que é o Totiente? (Calculando a Chave Privada)
+
+O totiente é o número que nos permitirá criar a chave privada. Também é conhecido como *“O segredo de Euler”*.
+
+<figure markdown="span">
+![](./img/euler.jpg ){ align=center, width="500"}
+</figure>
+
+**Euler** foi um matemático suíço que descobriu uma fórmula para calcular esse total — ou seja, o totiente — quando conhecemos a fatoração de $n$.
+
+> **Coprimo:** dois números são coprimos quando o máximo divisor comum (MDC) entre eles é $1$.
+
+Então, podemos definir o totiente de um número n como a quantidade de números menores que n n que são coprimos com n
+
+Por exemplo, qual seria o totiente de 8?
+
+Queremos o número de inteiros entre $1$ e $7$ que são coprimos a $8$. Para isso, calculamos o MDC de $8$ com cada um:
+
+| Número | MDC(8, número) | É coprimo? |
+|--------|----------------|------------|
+| 1 | 1 | ✓ |
+| 2 | 2 | ✗ |
+| 3 | 1 | ✓ |
+| 4 | 4 | ✗ |
+| 5 | 1 | ✓ |
+| 6 | 2 | ✗ |
+| 7 | 1 | ✓ |
+
+Portanto existem **4** números coprimos a $8$: $1$, $3$, $5$ e $7$. Ou seja, o **totiente de 8 é 4**. Não vamos ter todo esse trabalho massivo, e por isso é que citamos o Euler, pois ele criou uma fórmula para facilitar isso.
+
+Quando $n$ é o produto de dois primos $p$ e $q$, Euler mostrou que o totiente pode ser calculado assim:
+
+$$
+\phi(n) = (p - 1) \times (q - 1)
+$$
+
+Com nossos valores ($p = 5$, $q = 11$):
+
+$$
+\phi(n) = (5 - 1) \times (11 - 1) = 4 \times 10 = 40
+$$
+
+Assim, o número 40 é o nosso segredo que deve ser guardado a sete chaves!
+
+### 3.4) Calculando a Chave Pública
+
+
+
+
+
+---
+
+## Histórico de Evolução
+
+### 2026-02-28 - Fundamentos do RSA
+- Entendendo o conceito de criptografia e diferenças da simétrica para assimétrica
+- Explicando os fundamentos do algoritmo
+
+### 2026-03-01 - Começando a exploração do Algoritmo
+- Introdução ao fundamento matemático (totiente, coprimos)
+- Explicando a classificação do RSA
+
