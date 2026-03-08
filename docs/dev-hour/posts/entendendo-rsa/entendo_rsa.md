@@ -104,17 +104,16 @@ O RSA é classificado em bits, se referindo justamente ao tamanho do resultado d
 | 3072 bits  | 463 dígitos                    | 926 dígitos           |
 | 4096 bits  | 617 dígitos                    | 1234 dígitos          |
 ---
----
 
 Nosso primos serão esses:
 
-- ### $p = 5$
-- ### $q = 11$
+- ### $p = 3$
+- ### $q = 5$
 
 Multiplicamos os dois para obter o **módulo** $n$:
 
 $$
-n = p \times q = 5 \times 11 = 55
+n = p \times q = 3 \times 5 = 15
 $$
 
 Em seguida, calculamos o **totiente** — conceito explicado abaixo.
@@ -133,39 +132,52 @@ O totiente é o número que nos permitirá criar a chave privada. Também é con
 
 > **Coprimo:** dois números são coprimos quando o máximo divisor comum (MDC) entre eles é $1$.
 
-Então, podemos definir o totiente de um número n como a quantidade de números menores que n n que são coprimos com n
+Então, podemos definir o totiente de um número $n$ como a quantidade de números menores que $n$ que são coprimos com $n$.
 
-Por exemplo, qual seria o totiente de 8?
+Por exemplo, o número totiente (ou seja, o número de coprimos) de 15 é 8. Por que?
 
-Queremos o número de inteiros entre $1$ e $7$ que são coprimos a $8$. Para isso, calculamos o MDC de $8$ com cada um:
+MDC(15,1) = 1 ✅
+MDC(15,2) = 1 ✅
+MDC(15,3) = 3
+MDC(15,4) = 1 ✅
+MDC(15,5) = 5
+MDC(15,6) = 3
+MDC(15,7) = 1 ✅
+MDC(15,8) = 1 ✅
+MDC(15,9) = 3
+MDC(15,10) = 5
+MDC(15,11) = 1 ✅
+MDC(15,12) = 3
+MDC(15,13) = 1 ✅
+MDC(15,14) = 1 ✅
 
-| Número | MDC(8, número) | É coprimo? |
-|--------|----------------|------------|
-| 1 | 1 | ✓ |
-| 2 | 2 | ✗ |
-| 3 | 1 | ✓ |
-| 4 | 4 | ✗ |
-| 5 | 1 | ✓ |
-| 6 | 2 | ✗ |
-| 7 | 1 | ✓ |
 
-Portanto existem **4** números coprimos a $8$: $1$, $3$, $5$ e $7$. Ou seja, o **totiente de 8 é 4**. Não vamos ter todo esse trabalho massivo, e por isso é que citamos o Euler, pois ele criou uma fórmula para facilitar isso.
+Portanto existem 8 números que são coprimos ao 15: 1, 2, 4, 7, 8, 11, 13 e 14. Então o número totiente de 15 é 8. Não vamos ter todo esse trabalho massivo sempre, e por isso é que citamos Euler: ele criou uma fórmula para facilitar isso quando conhecemos a fatoração de $n$.
 
-Quando $n$ é o produto de dois primos $p$ e $q$, Euler mostrou que o totiente pode ser calculado assim:
+Quando $n$ é o produto de dois primos distintos $p$ e $q$, Euler mostrou que o totiente pode ser calculado assim:
 
 $$
 \phi(n) = (p - 1) \times (q - 1)
 $$
 
-Com nossos valores ($p = 5$, $q = 11$):
+No caso do número $15$, que pode ser escrito como $15 = 3 \times 5$, temos:
 
 $$
-\phi(n) = (5 - 1) \times (11 - 1) = 4 \times 10 = 40
+\phi(15) = (3 - 1) \times (5 - 1) = 2 \times 4 = 8
 $$
 
-Assim, o número 40 é o nosso segredo que deve ser guardado a sete chaves!
+Ou seja, a fórmula confirma exatamente o resultado que obtivemos pela contagem dos coprimos de $15$.
+
+Assim, o número 8 é o nosso segredo que deve ser guardado a sete chaves!
 
 ### 3.4) Calculando a Chave Pública
+
+Para gerarmos a chave pública, escolhemos um número $e$ que não compartilhe divisores com 15. Nesse caso, vamos escolher o **3**.
+
+Este número comporá a chave pública.
+
+
+### 3.5) Calculando a chave privada
 
 
 
