@@ -21,7 +21,7 @@ Este post explica os fundamentos que permitem a segurança e o uso do RSA, um do
 De forma direta, o RSA é um algoritmo de criptografia assimétrica amplamente usado para proteger dados sensíveis, como em comunicações online e assinaturas digitais. 
 
 Ele foi desenvolvido em 1977 por Ron Rivest, Adi Shamir e Leonard Adleman (daí o nome RSA), revolucionando a segurança digital ao eliminar a necessidade de trocar chaves secretas previamente. 
-> O título oficial do trabalho é: ["A Method for Obtaining Digital Signatures and Public-Key Cryptosystems"](https://apps.dtic.mil/sti/citations/ADA606588).
+> Para os interessados, o título oficial do trabalho é: ["A Method for Obtaining Digital Signatures and Public-Key Cryptosystems"](https://apps.dtic.mil/sti/citations/ADA606588).
 
 Para entender melhor a importância disso, é necessário entender o que é criptografia.
 
@@ -64,19 +64,24 @@ Assim, podemos entender que, nesse caso:
 
 ## 3) Entendendo a Criptografia Assimétrica
 
+O modelo simétrico é bastante intuitivo, como você pôde ver: uma senha que embaralha e desembaralha. Mas, e como funciona o modelo assimétrico?
+
 <figure markdown="span">
 ![](./img/criptografia_assimetrica.webp){ align=center, width="500"}
 </figure>
 
-Nesse modelo, a criptografia é feita usando um par de chaves: chave pública e chave privada. A chave pública pode ser compartilhada com qualquer pessoa, enquanto a chave privada deve ser mantida em segredo (porque só ela consegue acessar os dados).
+Nesse modelo, a criptografia é feita usando um par de chaves: chave pública e chave privada. A chave pública pode ser compartilhada com qualquer pessoa, enquanto a chave privada deve ser mantida em segredo (porque só ela consegue acessar os dados). Em resumo:
+
+- **Chave Pública:** Responsável por criptografar a mensagem
+- **Chave Privada:** Responsável por descriptografar a mensagem
 
 Um dos algoritmos mais famosos que utilizam essa estratégia é o RSA, no qual estamos focados aqui.
 
-### 3.1) Onde reside a segurança desse método? (O Fundamento Matemático)
+### 3.1) O Fundamento Matemático: Onde reside a segurança desse método?
 
-Essa criptografia que utilizamos atualmente se baseia no fato de que não temos processamento suficiente para encontrar a chave de criptografia por força bruta (no caso, a chave privada). Isso significa que, se alguém tentar descobrir a chave por tentativa e erro, levaria uma quantidade enorme de anos, tornando o ataque inviável.
+Essa criptografia que utilizamos atualmente se baseia no fato de que não temos processamento suficiente para encontrar a chave de criptografia por força bruta (no caso, a chave privada). Isso significa que, se alguém tentar descobrir a chave por tentativa e erro, levaria uma quantidade enorme de anos, tornando o ataque inviável. Mas, como isso é possível?
 
-O RSA é fundamentado em um ingrediente secreto: números primos. Esses números são considerados os "átomos" da matemática, porque dão origem a todos os outros números.
+Bom, o RSA é fundamentado em um ingrediente secreto: números primos. Esses números são considerados os "átomos" da matemática, porque dão origem a todos os outros números.
 
 > Como assim? Qualquer número composto é resultado da multiplicação de primos. Qualquer um. 15 = 3×5, 20 = 5×2×2...
 
@@ -90,25 +95,10 @@ E é aí que entra a ideia do RSA: multiplicação de primos. É fácil multipli
 
 > Cozinhar um ovo é uma função unidirecional: é fácil ferver um ovo, mas não é possível desfervê-lo.
 
-Tudo começa com dois números primos. No mundo real, eles têm centenas de dígitos; aqui usaremos dois primos pequenos para facilitar o acompanhamento.
+Tudo começa com dois números primos. No mundo real, eles têm centenas de dígitos, mas aqui usaremos dois primos pequenos para facilitar o acompanhamento. Nossos primos serão esses:
 
----
----
-O RSA é classificado em bits, se referindo justamente ao tamanho do resultado da multiplicação dos primos. O mais utilizado atualmente é o **RSA-2048.**
-
-| RSA (bits) | Dígitos de cada primo (aprox.) | Dígitos de n (aprox.) |
-|------------|--------------------------------|-----------------------|
-| 512 bits   | 77 dígitos                     | 155 dígitos           |
-| 1024 bits  | 155 dígitos                    | 309 dígitos           |
-| 2048 bits  | 309 dígitos                    | 617 dígitos           |
-| 3072 bits  | 463 dígitos                    | 926 dígitos           |
-| 4096 bits  | 617 dígitos                    | 1234 dígitos          |
----
-
-Nossos primos serão esses:
-
-- ### $p = 3$
-- ### $q = 5$
+- ###$p = 3$
+- ###$q = 5$
 
 Multiplicamos os dois para obter o **módulo** $n$:
 
@@ -116,11 +106,11 @@ $$
 n = p \times q = 3 \times 5 = 15
 $$
 
-Em seguida, calculamos o **totiente** — conceito explicado abaixo.
+Em seguida, iremos calcular o **totiente** — conceito explicado abaixo.
 
 ---
 
-### 3.3) O que é o Totiente? (Calculando a Chave Privada)
+### 3.3) Entendendo o Totiente 
 
 O totiente é o número que nos permitirá criar a chave privada. Também é conhecido como *“O segredo de Euler”*.
 
@@ -128,31 +118,32 @@ O totiente é o número que nos permitirá criar a chave privada. Também é con
 ![](./img/euler.jpg ){ align=center, width="500"}
 </figure>
 
-**Euler** foi um matemático suíço que descobriu uma fórmula para calcular esse total — ou seja, o totiente — quando conhecemos a fatoração de $n$.
+**Euler** foi um matemático suíço que descobriu uma fórmula para calcular esse valor. Mas, a princípio, o que é esse totiente? Primeiro, precisamos entender o que é um número **COPRIMO**.
 
-> **Coprimo:** dois números são coprimos quando o máximo divisor comum (MDC) entre eles é $1$.
+Esse é um termo que é dado a númeos cujos únicos divisores comuns são 1 e -1, ou seja, o maior divisor comum (MDC) entre eles é 1. Pare entender melhor, vamos pegar como exemplo nosso módulo, que possui valor 15, e vamos fazer o MDC:
 
-Então, podemos definir o totiente de um número $n$ como a quantidade de números menores que $n$ que são coprimos com $n$.
+> Para relembrar, o MDC consitem em você ir fatorando um número até encontrar o maior número inteiro que divide dois ou mais números inteiros sem deixar resto na divisão.
 
-Por exemplo, o número totiente (ou seja, o número de coprimos) de 15 é 8. Por que?
+| Operação      | Resultado | Coprimo com 15? |
+| ------------- | --------- | ----------------|
+| MDC(15, 1)    | 1         | ✅              |
+| MDC(15, 2)    | 1         | ✅              |
+| MDC(15, 3)    | 3         |                |
+| MDC(15, 4)    | 1         | ✅              |
+| MDC(15, 5)    | 5         |                |
+| MDC(15, 6)    | 3         |                |
+| MDC(15, 7)    | 1         | ✅              |
+| MDC(15, 8)    | 1         | ✅              |
+| MDC(15, 9)    | 3         |                |
+| MDC(15, 10)   | 5         |                |
+| MDC(15, 11)   | 1         | ✅              |
+| MDC(15, 12)   | 3         |                |
+| MDC(15, 13)   | 1         | ✅              |
+| MDC(15, 14)   | 1         | ✅              |
 
-MDC(15,1) = 1 ✅
-MDC(15,2) = 1 ✅
-MDC(15,3) = 3
-MDC(15,4) = 1 ✅
-MDC(15,5) = 5
-MDC(15,6) = 3
-MDC(15,7) = 1 ✅
-MDC(15,8) = 1 ✅
-MDC(15,9) = 3
-MDC(15,10) = 5
-MDC(15,11) = 1 ✅
-MDC(15,12) = 3
-MDC(15,13) = 1 ✅
-MDC(15,14) = 1 ✅
+Com isso, podemos dizer que existem 8 números que são coprimos ao 15: 1, 2, 4, 7, 8, 11, 13 e 14. **O TOTIENTE É O NOME QUE DAMOS A ESSA QUANTIDADE DE COPRIMOS DE UM NÚMERO!** Nesse caso, o totiente de 15 é 8, simples, não?
 
-
-Portanto, existem 8 números que são coprimos ao 15: 1, 2, 4, 7, 8, 11, 13 e 14. Então o número totiente de 15 é 8. Não vamos ter todo esse trabalho massivo sempre, e por isso é que citamos Euler: ele criou uma fórmula para facilitar isso quando conhecemos a fatoração de $n$.
+No entanto, não vamos ter todo esse trabalho massivo sempre, e por isso é que citamos Euler: ele criou uma fórmula para facilitar isso quando conhecemos a fatoração de $n$.
 
 Quando $n$ é o produto de dois primos distintos $p$ e $q$, Euler mostrou que o totiente pode ser calculado assim:
 
