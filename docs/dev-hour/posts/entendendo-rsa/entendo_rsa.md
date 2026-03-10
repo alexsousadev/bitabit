@@ -120,9 +120,9 @@ O totiente é o número que nos permitirá criar a chave privada. Também é con
 
 **Euler** foi um matemático suíço que descobriu uma fórmula para calcular esse valor. Mas, a princípio, o que é esse totiente? Primeiro, precisamos entender o que é um número **COPRIMO**.
 
-Esse é um termo que é dado a númeos cujos únicos divisores comuns são 1 e -1, ou seja, o maior divisor comum (MDC) entre eles é 1. Pare entender melhor, vamos pegar como exemplo nosso módulo, que possui valor 15, e vamos fazer o MDC:
+Esse é um termo que é dado a números cujos únicos divisores comuns são 1 e -1, ou seja, o maior divisor comum (MDC) entre eles é 1. Pare entender melhor, vamos pegar como exemplo nosso módulo, que possui valor 15, e vamos fazer o MDC:
 
-> Para relembrar, o MDC consitem em você ir fatorando um número até encontrar o maior número inteiro que divide dois ou mais números inteiros sem deixar resto na divisão.
+> Para relembrar, o MDC consite em você ir fatorando um número até encontrar o maior número inteiro que divide dois ou mais números inteiros sem deixar resto na divisão.
 
 | Operação      | Resultado | Coprimo com 15? |
 | ------------- | --------- | ----------------|
@@ -163,13 +163,12 @@ Assim, o número 8 é o nosso segredo que deve ser guardado a sete chaves!
 
 ### 3.4) Calculando a Chave Pública
 
-A chave pública é um par de números. Para gerarmos a chave pública, a regra é que devemos escolher um número $e$ que não compartilhe divisores com 15 e que seja menor que ele. Nesse caso, vamos escolher o **3** (mas poderia ser qualquer outro).
+Para gerarmos a chave pública, a regra é que devemos escolher um número $e$ que não compartilhe divisores com 15 e que seja menor que ele. Eles são chamados de [**Números de Fermat**](https://en.wikipedia.org/wiki/Fermat_number), batizada em homenagem ao matemático francês do século XVII, Pierre de Fermat, que projetou uma fórmula que gerava esses números. 
 
-Este número comporá a chave pública:
 
-- chave pública = (3,15)
+Nesse caso, vamos escolher o **3** (mas poderia ser qualquer outro que atenda a essas condições). Este número comporá a chave pública.
 
-Uma vez que temos a chave pública, podemos agora utilizar a fórmula para criptografar do RSA:
+Uma vez que temos a chave pública, podemos agora utilizar a fórmula para criptografar:
 
 
 $$c = m^e \pmod n$$
@@ -181,23 +180,25 @@ Onde:
 - e = a chave pública (e=3)
 - n = o módulo, que é aquela multiplicação de primos (n=15)
 
-Para exemplificar, vamos criptografar a mensagem "5". Assim, teremos:
+Para exemplificar, vamos criptografar a mensagem "8". Assim, teremos:
 
-$$c = 5^3 \pmod{15}$$
+$$c = 8^3 \pmod{15}$$
+
+> No mundo real, sabemos que não trabalhamos apenas com números, mas textos também.. no entanto, o RSA só entende números, então precisamos transformar o texto em um "bandão" de bits. Para isso, pegamos e transformamos em binário ou hexadecimal usando um padrão como o UTF-8.
 
 Agora, vamos calcular isso:
 
-$$5^3 = 125$$
+$$8^3 = 512$$
 
-$$125 \div 15 = 8 \text{ resto } 5$$
+$$512 \div 15 = 34 \text{ resto } 2$$
 
-Ou seja: $125 = 15 \times 8 + 5$, portanto $125 \equiv 5 \pmod{15}$.
+Ou seja: $512 = 15 \times 34 + 2$, portanto $512 \equiv 2 \pmod{15}$.
 
-Então, nosso texto criptografado será **5**.
+Então, nosso texto criptografado será **2**.
 
 ### 3.5) Calculando a chave privada
 
-Aqui está o "pulo do gato": qualquer pessoa que veja o número 5 passando pela rede não conseguirá descobrir que a mensagem original era 5, a menos que possua a chave privada, chamada de $d$.
+Aqui está o "pulo do gato": qualquer pessoa que veja o número 2 passando pela rede não conseguirá descobrir que a mensagem original era 8, a menos que possua a chave privada, chamada de $d$.
 
 Esse número $d$ deve satisfazer uma condição específica: quando multiplicamos $e$ por $d$ e pegamos o resto da divisão por $\phi(n)$, o resultado precisa ser 1. Em forma matemática, isso é escrito como:
 
@@ -232,21 +233,21 @@ $$m = c^d \pmod n$$
 Onde:
 
 - m = mensagem original 
-- c = texto cifrado (c=5)
+- c = texto cifrado (c=2)
 - d = chave privada (d=3)
 - n = nosso módulo (n=15)
 
 Com isso, podemos começar a aplicar nossos valores na fórmula:
 
-$$m = 5^3 \pmod{15}$$
+$$m = 2^3 \pmod{15}$$
 
 Calculando:
 
-$$5^3 = 125$$
+$$2^3 = 8$$
 
-$$125 \equiv 5 \pmod{15} \quad \text{(pois } 125 = 15 \times 8 + 5\text{)}$$
+$$8 \equiv 8 \pmod{15} \quad \text{(pois } 8 = 15 \times 0 + 8\text{)}$$
 
-Portanto, $m = 5$ — recuperamos exatamente a mensagem original. O ciclo está completo: criptografamos "5" com a chave pública e descriptografamos com a chave privada, obtendo de volta o "5".
+Portanto, $m = 8$ — recuperamos exatamente a mensagem original. O ciclo está completo: criptografamos "8" com a chave pública e descriptografamos com a chave privada, obtendo de volta o "8".
 
 
 Como você pode ver, embora a fórmula seja simples, a segurança vem do fato de que:
@@ -255,15 +256,15 @@ Como você pode ver, embora a fórmula seja simples, a segurança vem do fato de
 2. Para conhecer $\phi(n)$, você precisa saber quais são os números primos $p$ e $q$ que formam $n$.
 3. Fatorar um número $n$ gigantesco para encontrar $p$ e $q$ levaria milhares de anos para os computadores atuais.
 
-Embora o algoritmo em si seja público e patenteado originalmente pelos criadores (Rivest, Shamir e Adleman), há uma empresa chamada RSA Security (hoje parte da SecurID Corporation, sob a Dell Technologies) que gerencia o legado, incluindo esses desafios. 
-
 ### O Desafio de Fatoração RSA
 
-O Desafio de Fatoração RSA foi criado pela RSA Laboratories em 18 de março de 1991 com o objetivo de incentivar pesquisas em teoria dos números computacional e avaliar a dificuldade prática de fatorar números inteiros muito grandes, algo essencial para testar a segurança da criptografia RSA.
+Embora o algoritmo em si seja público e patenteado originalmente pelos criadores (Rivest, Shamir e Adleman), há uma empresa chamada RSA Security (hoje parte da SecurID Corporation, sob a Dell Technologies) que gerencia o legado, incluindo, no passado, desafios de fatoração.
+
+O Desafio de Fatoração RSA foi criado em 18 de março de 1991 com o objetivo de incentivar pesquisas em teoria dos números computacional e avaliar a dificuldade prática de fatorar números inteiros muito grandes, algo essencial para testar a segurança da criptografia RSA.
 
 Para isso, a empresa publicou uma lista de números semiprimos (é o nome que damos aos números formados pela multiplicação de dois números primos), conhecidos como números RSA (nosso módulo $n$). Quem conseguisse fatorar alguns desses números receberia prêmios em dinheiro.
 
-Em 2001, a RSA Laboratories ampliou o desafio e passou a oferecer prêmios entre US$10.000 e US$200.000 para quem conseguisse fatorar números com tamanhos entre 576 e 2048 bits.
+Em 2001, a RSA Laboratories ampliou o desafio e passou a oferecer prêmios entre US$ 10.000 e US$ 200.000 para quem conseguisse fatorar números com tamanhos entre 576 e 2048 bits.
 
 <figure markdown="span">
 ![](./img/rsa-challenge.png){ align=center, width="500"}
@@ -278,14 +279,16 @@ O desafio foi oficialmente encerrado em 2007. Segundo a própria RSA Laboratorie
 
 
 ---
+
 > Você pode acessar a lista completa em [RSA Factoring Challenge | Wikipedia](https://en.wikipedia.org/wiki/RSA_Factoring_Challenge)
+
 ---
 
 
 
 
 
-Para fins de curiosidade, os maiores “n” que foram quebrados foi o RSA-768 e o RSA-250. O primeiro, foi quebrado em 2009 (ou seja, chegaram tarde para ganhar o prêmio...), e tinha o valor:
+Para fins de curiosidade, os maiores “n” que foram quebrados foram o RSA-768 e o RSA-250. O primeiro, foi quebrado em 2009 (ou seja, chegaram tarde para ganhar o prêmio...), e tinha o valor:
 
 - n = 1230186684530117755130494958384962720772853569595334792197322452151726400507263657518745202199786469389956474942774063845925192557326303453731548268507917026122142913461670429214311602221240479274737794080665351419597459856902143413
 
@@ -295,7 +298,7 @@ Para fins de curiosidade, os maiores “n” que foram quebrados foi o RSA-768 e
  
  - q = 36746043666799590428244633799627952632279158164343087642676032283815739666511279233373417143396810270092798736308917
 
-> O RSA-768 foi quebrado usando o Método do Crivo de Campos Numéricos (Number Field Sieve - NFS), o algoritmo mais eficiente conhecido para fatorar números semiprimos grandes. Para quem quiser entender melhor, clique [AQUI](https://studylib.net/doc/27064628/factorization-of-a-768-bit-rsa-modulus) para ver o paper.
+> O RSA-768 foi quebrado usando um método chamado de Crivo de Campos Numéricos (Number Field Sieve - NFS). Para quem quiser entender melhor, clique [AQUI](https://studylib.net/doc/27064628/factorization-of-a-768-bit-rsa-modulus) para ver o paper.
 
 Já o RSA-250 é mais recente, sendo quebrado em 2020. E aí você pode estar se perguntando: "Ué, 250 não é menor? Então não seria fácil?". Isso ocorre porque o RSA mudou a nomenclatura com o passar dos anos.
 
@@ -315,6 +318,18 @@ E os números primos encontrados foram:
 - q = 3337202759497815655622601060535511422794076034476755466678452098702384172921003708025744867329688187756571898625803692062711
 
 > Essa mesma equipe também quebrou o RSA-240, em 2019. Para fins de comparação, o número possui 240 dígitos, ou, 795 bits. Veja a lista completa em [RSA numbers | Wikipedia](https://en.wikipedia.org/wiki/RSA_numbers)
+
+
+# Alguns detalhes técnicos
+
+
+## O problema do tamanho
+
+O RSA tem um limite físico: a mensagem $m$ tem que ser menor que o módulo $n$.
+
+Então, se você tem uma chave RSA de 2048 bits, você só consegue encriptar um "número" de até 2048 bits (cerca de 256 caracteres).
+
+Como encriptar um site inteiro ou um arquivo de 1GB? A resposta é: você não usa RSA para isso....
 
 
 # Conclusão
