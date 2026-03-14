@@ -1,5 +1,5 @@
 ---
-date: 2026-02-28
+date: 2026-03-14
 categories:
     - Segurança da Informação
 tags:
@@ -11,6 +11,7 @@ tags:
 # Como o Algoritmo RSA funciona?
 
 
+<!-- more -->
 
 Este post explica os fundamentos que permitem a segurança e o uso do RSA, um dos sistemas de criptografia mais usados e seguros do mundo.
 
@@ -93,13 +94,14 @@ Aliás, só para recapitular, números primos são números maiores que 1 e divi
 
 Por esse motivo, são chamados de blocos de construção da matemática. Eles são os mais estudados pelos matemáticos porque são cobertos de mistérios. Por exemplo, é impossível predizer onde estará o próximo número; houve muitas tentativas ao longo da história, mas todas falharam. Eles parecem ser completamente aleatórios.
 
-E é aí que entra a ideia do RSA: multiplicação de primos. É fácil multiplicar dois números primos, mas é incrivelmente difícil descobrir quais números primos foram usados para formar esse número. Isso é conhecido como uma **função de alçapão** ou uma **função unidirecional**. Embora seja fácil percorrer um caminho, é computacionalmente inviável percorrer o outro caminho.
+E é aí que entra a ideia do RSA: multiplicação de primos. É fácil multiplicar dois números primos, mas é incrivelmente difícil descobrir quais números primos foram usados pY
+Youtube Summarizerara formar esse número. Isso é conhecido como uma **função de alçapão** ou uma **função unidirecional**. Embora seja fácil percorrer um caminho, é computacionalmente inviável percorrer o outro caminho.
 
 
 Tudo começa com dois números primos. No mundo real, eles têm centenas de dígitos, mas aqui usaremos dois primos pequenos para facilitar o acompanhamento. Nossos primos serão esses:
 
-- ###$p = 3$
-- ###$q = 5$
+- $p = 3$
+- $q = 5$
 
 Multiplicamos os dois para obter o **módulo** $n$:
 
@@ -256,7 +258,7 @@ Como você pode ver, embora a fórmula seja simples, a segurança vem do fato de
 2. Para conhecer $\phi(n)$, você precisa saber quais são os números primos $p$ e $q$ que formam $n$.
 3. Fatorar um número $n$ gigantesco para encontrar $p$ e $q$ levaria milhares de anos para os computadores atuais.
 
-### O Desafio de Fatoração RSA
+### 3.6) O Desafio de Fatoração RSA
 
 Embora o algoritmo em si seja público e patenteado originalmente pelos criadores (Rivest, Shamir e Adleman), há uma empresa chamada RSA Security (hoje parte da SecurID Corporation, sob a Dell Technologies) que gerencia o legado, incluindo, no passado, desafios de fatoração.
 
@@ -320,7 +322,7 @@ E os números primos que geram ele são:
 > Essa mesma equipe também quebrou o RSA-240, em 2019. Para fins de comparação, o número possui 240 dígitos, ou, 795 bits. Veja a lista completa em [RSA numbers | Wikipedia](https://en.wikipedia.org/wiki/RSA_numbers)
 
 
-# Alguns detalhes técnicos
+## 4) Alguns detalhes técnicos
 
 
 ## O problema do tamanho
@@ -332,7 +334,7 @@ Então, se você tem uma chave RSA de 2048 bits, você só consegue encriptar um
 Como encriptar um site inteiro ou um arquivo de 1GB? A resposta é: você não usa RSA para isso....
 
 
-# Conclusão
+# 5) Conclusão
 
 Pois é, como já foi explicado no decorrer deste post, toda a segurança do algoritmo RSA está em proteger os números primos “p” e “q”. Com toda a tecnologia a que chegamos, o máximo que conseguimos quebrar foi o RSA-250. 
 
@@ -353,20 +355,3 @@ Por exemplo, esse é o número $n$ do RSA-2048 (617 dígitos decimais):
 Os melhores ataques conhecidos usam o algoritmo *General Number Field Sieve* (GNFS), cuja complexidade cresce super-exponencialmente conforme o número aumenta. Aumentar apenas algumas centenas de bits no tamanho da chave pode tornar o problema bilhões ou trilhões de vezes mais difícil.
 
 Essa segurança pode mudar no futuro se computadores quânticos conseguirem rodar o **algoritmo de Shor**, que teoricamente poderia fatorar números gigantes em tempo polinomial... mas isso é assunto para outro dia. Até mais!
-
-
----
-
-## Histórico de Evolução
-
-### 2026-02-28 - Fundamentos do RSA
-- Entendendo o conceito de criptografia e diferenças da simétrica para assimétrica
-- Explicando os fundamentos do algoritmo
-
-### 2026-03-01 - Começando a exploração do Algoritmo
-- Introdução ao fundamento matemático (totiente, coprimos)
-- Explicando a classificação do RSA
-
-### 2026-03-08 - Explicando os algoritmos para Criptografar e Descriptografar
-- Detalhes de uso das fórmulas
-- Exemplos de uso com código para automatizar
