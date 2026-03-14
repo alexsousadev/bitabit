@@ -325,7 +325,7 @@ E os números primos que geram ele são:
 ## 4) Alguns detalhes técnicos
 
 
-## O problema do tamanho
+### 4.1) O problema do tamanho
 
 O RSA tem um limite físico: a mensagem $m$ tem que ser menor que o módulo $n$.
 
