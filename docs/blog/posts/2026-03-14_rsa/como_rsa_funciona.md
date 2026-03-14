@@ -85,6 +85,8 @@ Bom, o RSA é fundamentado em um ingrediente secreto: números primos. Esses nú
 
 > Como assim? Qualquer número composto é resultado da multiplicação de primos. Qualquer um. 15 = 3×5, 20 = 5×2×2...
 
+Aliás, só para recapitular, números primos são números maiores que 1 e divisíveis apenas por 1 e por ele mesmo.  Por exemplo, 7 é primo porque só divide por 1 e 7 (7 ÷ 1 = 7; 7 ÷ 7 = 1), enquanto 8 é composto (divisores: 1, 2, 4, 8).
+
 <figure markdown="span">
 ![](./img/numeros_primos.png){ align=center, width="500"}
 </figure>
@@ -93,7 +95,6 @@ Por esse motivo, são chamados de blocos de construção da matemática. Eles s�
 
 E é aí que entra a ideia do RSA: multiplicação de primos. É fácil multiplicar dois números primos, mas é incrivelmente difícil descobrir quais números primos foram usados para formar esse número. Isso é conhecido como uma **função de alçapão** ou uma **função unidirecional**. Embora seja fácil percorrer um caminho, é computacionalmente inviável percorrer o outro caminho.
 
-> Cozinhar um ovo é uma função unidirecional: é fácil ferver um ovo, mas não é possível desfervê-lo.
 
 Tudo começa com dois números primos. No mundo real, eles têm centenas de dígitos, mas aqui usaremos dois primos pequenos para facilitar o acompanhamento. Nossos primos serão esses:
 
@@ -110,7 +111,7 @@ Em seguida, iremos calcular o **totiente** — conceito explicado abaixo.
 
 ---
 
-### 3.3) Entendendo o Totiente 
+### 3.2) Entendendo o Totiente 
 
 O totiente é o número que nos permitirá criar a chave privada. Também é conhecido como *“O segredo de Euler”*.
 
@@ -123,6 +124,8 @@ O totiente é o número que nos permitirá criar a chave privada. Também é con
 Esse é um termo que é dado a números cujos únicos divisores comuns são 1 e -1, ou seja, o maior divisor comum (MDC) entre eles é 1. Pare entender melhor, vamos pegar como exemplo nosso módulo, que possui valor 15, e vamos fazer o MDC:
 
 > Para relembrar, o MDC consite em você ir fatorando um número até encontrar o maior número inteiro que divide dois ou mais números inteiros sem deixar resto na divisão.
+
+Para facilitar, você pode utilizar o site [Calculadora.app](https://www.calculadora.app/matematica/mdc/). Abaixo, podemos ver a lista com todos os MDC do 15:
 
 | Operação      | Resultado | Coprimo com 15? |
 | ------------- | --------- | ----------------|
@@ -143,15 +146,15 @@ Esse é um termo que é dado a números cujos únicos divisores comuns são 1 e 
 
 Com isso, podemos dizer que existem 8 números que são coprimos ao 15: 1, 2, 4, 7, 8, 11, 13 e 14. **O TOTIENTE É O NOME QUE DAMOS A ESSA QUANTIDADE DE COPRIMOS DE UM NÚMERO!** Nesse caso, o totiente de 15 é 8, simples, não?
 
-No entanto, não vamos ter todo esse trabalho massivo sempre, e por isso é que citamos Euler: ele criou uma fórmula para facilitar isso quando conhecemos a fatoração de $n$.
-
-Quando $n$ é o produto de dois primos distintos $p$ e $q$, Euler mostrou que o totiente pode ser calculado assim:
+No entanto, não vamos ter todo esse trabalho massivo sempre, e por isso é que citamos Euler: ele criou uma fórmula para facilitar isso. Quando $n$ é o produto de dois primos distintos $p$ e $q$, Euler mostrou que o totiente pode ser calculado assim:
 
 $$
 \phi(n) = (p - 1) \times (q - 1)
 $$
 
-No caso do número $15$, que pode ser escrito como $15 = 3 \times 5$, temos:
+> Para fins de curiosidade, o $\phi$ é a letra "Phi" do alfabeto grego, amplamente conhecida como o símbolo da [proporção áurea](https://pt.wikipedia.org/wiki/Propor%C3%A7%C3%A3o_%C3%A1urea), representando beleza e harmonia na matemática.
+
+No caso do número $15$, que pode ser escrito como $15 = 3 \times 5$. Então temos:
 
 $$
 \phi(15) = (3 - 1) \times (5 - 1) = 2 \times 4 = 8
@@ -161,14 +164,12 @@ Ou seja, a fórmula confirma exatamente o resultado que obtivemos pela contagem 
 
 Assim, o número 8 é o nosso segredo que deve ser guardado a sete chaves!
 
-### 3.4) Calculando a Chave Pública
+### 3.3) Calculando a Chave Pública e criptografando a mensagem
 
 Para gerarmos a chave pública, a regra é que devemos escolher um número $e$ que não compartilhe divisores com 15 e que seja menor que ele. Eles são chamados de [**Números de Fermat**](https://en.wikipedia.org/wiki/Fermat_number), batizada em homenagem ao matemático francês do século XVII, Pierre de Fermat, que projetou uma fórmula que gerava esses números. 
 
 
-Nesse caso, vamos escolher o **3** (mas poderia ser qualquer outro que atenda a essas condições). Este número comporá a chave pública.
-
-Uma vez que temos a chave pública, podemos agora utilizar a fórmula para criptografar:
+Nesse caso, vamos escolher o **3** (mas poderia ser qualquer outro que atenda a essas condições). Este número comporá a chave pública. Uma vez que temos a chave pública, podemos agora utilizar a fórmula para criptografar:
 
 
 $$c = m^e \pmod n$$
@@ -184,21 +185,20 @@ Para exemplificar, vamos criptografar a mensagem "8". Assim, teremos:
 
 $$c = 8^3 \pmod{15}$$
 
-> No mundo real, sabemos que não trabalhamos apenas com números, mas textos também.. no entanto, o RSA só entende números, então precisamos transformar o texto em um "bandão" de bits. Para isso, pegamos e transformamos em binário ou hexadecimal usando um padrão como o UTF-8.
+> No mundo real, não lidamos só com números, mas também com textos. Porém, o RSA só trabalha com números. Então, antes de criptografar uma mensagem, precisamos transformar o texto em um grande conjunto de bits. Para fazer isso, codificamos o texto em formatos como binário ou hexadecimal usando um padrão de codificação, como o[ UTF-8](https://pt.wikipedia.org/wiki/UTF-8).
+
 
 Agora, vamos calcular isso:
 
 $$8^3 = 512$$
 
-$$512 \div 15 = 34 \text{ resto } 2$$
+$$\pmod{15} = 512 \div 15 = 34 \text{ resto } 2$$
 
-Ou seja: $512 = 15 \times 34 + 2$, portanto $512 \equiv 2 \pmod{15}$.
+A operação "mod" refere-se à operação de módulo, popularmente conhecida como resto da divisão. Ou seja, **o resultado será 2! Esse será nosso texto criptografado.**
 
-Então, nosso texto criptografado será **2**.
+### 3.4) Calculando a chave privada
 
-### 3.5) Calculando a chave privada
-
-Aqui está o "pulo do gato": qualquer pessoa que veja o número 2 passando pela rede não conseguirá descobrir que a mensagem original era 8, a menos que possua a chave privada, chamada de $d$.
+Aqui está o "pulo do gato": qualquer pessoa que veja o número 2 passando pela rede não conseguirá descobrir que a mensagem original era 8, a menos que possua a chave privada, chamada de $d$. Então, agora vamos calcular essa chave para que possamos retornar à mensagem original.
 
 Esse número $d$ deve satisfazer uma condição específica: quando multiplicamos $e$ por $d$ e pegamos o resto da divisão por $\phi(n)$, o resultado precisa ser 1. Em forma matemática, isso é escrito como:
 
@@ -224,7 +224,7 @@ function encontrar_d(e, totiente){
 
 Com isso, podemos obter o resultado, que é 3.
 
-### 3.6) Descriptografando a mensagem
+### 3.5) Descriptografando a mensagem
 
 Agora que já temos nossa chave privada, podemos seguir para retornar o texto para seu valor original. A fórmula para descriptografar é a seguinte:
 
@@ -300,7 +300,7 @@ Para fins de curiosidade, os maiores “n” que foram quebrados foram o RSA-768
 
 > O RSA-768 foi quebrado usando um método chamado de Crivo de Campos Numéricos (Number Field Sieve - NFS). Para quem quiser entender melhor, clique [AQUI](https://studylib.net/doc/27064628/factorization-of-a-768-bit-rsa-modulus) para ver o paper.
 
-Já o RSA-250 é mais recente, sendo quebrado em 2020. E aí você pode estar se perguntando: "Ué, 250 não é menor? Então não seria fácil?". Isso ocorre porque o RSA mudou a nomenclatura com o passar dos anos.
+Já o RSA-250 é mais recente, sendo quebrado em 2020. E aí você pode estar se perguntando: "Ué, 250 não é menor? Então não seria mais fácil?". Isso ocorre porque o RSA mudou a nomenclatura com o passar dos anos.
 
 Os primeiros números RSA (do RSA-100 até RSA-500) foram rotulados pelo número de dígitos decimais, e depois, a partir do RSA-576, passaram a usar dígitos binários.
 
@@ -311,7 +311,7 @@ O RSA-250 foi fatorado em fevereiro de 2020 por uma equipe internacional de pesq
 
 - n = 2140324650240744961264423072839333563008614715144755017797754920881418023447140136643345519095804679610992851872470914587687396261921557363047454770520805119056493106687691590019759405693457452230589325976697471681738069364894699871578494975937497937
 
-E os números primos encontrados foram:
+E os números primos que geram ele são:
 
 - p = 64135289477071580278790190170577389084825014742943447208116859632024532344630238623598752668347708737661925585694639798853367
 
@@ -338,7 +338,7 @@ Pois é, como já foi explicado no decorrer deste post, toda a segurança do alg
 
 No mundo atual, certificados HTTPS emitidos por autoridades certificadoras como a DigiCert usam RSA-2048 ou maiores — inclusive chaves de 3072 e 4096 bits estão disponíveis. Isso significa que o número a ser fatorado tem pelo menos 2048 bits, o que corresponde a aproximadamente 617 dígitos decimais. Praticamente impossível de quebrar por força bruta hoje.
 
-Esse é o número $n$ do RSA-2048 (617 dígitos decimais):
+Por exemplo, esse é o número $n$ do RSA-2048 (617 dígitos decimais):
 
 ```
 2519590847565789349402718324004839857142928212620403202777713783604366202070759555626401852588078440
