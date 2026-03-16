@@ -9,4 +9,3 @@ Diferente dos artigos finais do blog, aqui você encontrará notas brutas, desaf
 - [Criando um Emulador de Intel 8080](posts/intel8080-emulador/intel8080-emulador.md)
 - [Como funciona um sensor de Impressão Digital](posts/como_funciona_digital/como_funciona_digital.md)
 - [Como funciona a tela do Kindle (e-ink)](./posts/e-ink-como-funciona/e-ink-como-funciona.md)
-- [Entendendo a criptografia RSA](./posts/entendendo-rsa/entendo_rsa.md)
