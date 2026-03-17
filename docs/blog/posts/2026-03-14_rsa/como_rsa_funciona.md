@@ -86,7 +86,7 @@ Bom, o RSA é fundamentado em um ingrediente secreto: números primos. Esses nú
 
 > Como assim? Qualquer número composto é resultado da multiplicação de primos. Qualquer um. 15 = 3×5, 20 = 5×2×2...
 
-Aliás, só para recapitular, números primos são números maiores que 1 e divisíveis apenas por 1 e por ele mesmo.  Por exemplo, 7 é primo porque só divide por 1 e 7 (7 ÷ 1 = 7; 7 ÷ 7 = 1), enquanto 8 é composto (divisores: 1, 2, 4, 8).
+Aliás, só para recapitular, números primos são números maiores que 1 e divisíveis apenas por 1 e por ele mesmo. Por exemplo, 7 é primo porque só divide por 1 e 7 (7 ÷ 1 = 7; 7 ÷ 7 = 1), enquanto 8 é composto (divisores: 1, 2, 4, 8).
 
 <figure markdown="span">
 ![](./img/numeros_primos.png){ align=center, width="500"}
@@ -94,8 +94,7 @@ Aliás, só para recapitular, números primos são números maiores que 1 e divi
 
 Por esse motivo, são chamados de blocos de construção da matemática. Eles são os mais estudados pelos matemáticos porque são cobertos de mistérios. Por exemplo, é impossível predizer onde estará o próximo número; houve muitas tentativas ao longo da história, mas todas falharam. Eles parecem ser completamente aleatórios.
 
-E é aí que entra a ideia do RSA: multiplicação de primos. É fácil multiplicar dois números primos, mas é incrivelmente difícil descobrir quais números primos foram usados pY
-Youtube Summarizerara formar esse número. Isso é conhecido como uma **função de alçapão** ou uma **função unidirecional**. Embora seja fácil percorrer um caminho, é computacionalmente inviável percorrer o outro caminho.
+E é aí que entra a ideia do RSA: multiplicação de primos. É fácil multiplicar dois números primos, mas é incrivelmente difícil descobrir quais números primos foram usados para formar esse número. Isso é conhecido como uma **função de alçapão** ou uma **função unidirecional**. Embora seja fácil percorrer um caminho, é computacionalmente inviável percorrer o outro caminho.
 
 
 Tudo começa com dois números primos. No mundo real, eles têm centenas de dígitos, mas aqui usaremos dois primos pequenos para facilitar o acompanhamento. Nossos primos serão esses:
@@ -113,7 +112,7 @@ Em seguida, iremos calcular o **totiente** — conceito explicado abaixo.
 
 ---
 
-### 3.2) Entendendo o Totiente 
+### 3.2) Entendendo o Totiente
 
 O totiente é o número que nos permitirá criar a chave privada. Também é conhecido como *“O segredo de Euler”*.
 
@@ -123,11 +122,11 @@ O totiente é o número que nos permitirá criar a chave privada. Também é con
 
 **Euler** foi um matemático suíço que descobriu uma fórmula para calcular esse valor. Mas, a princípio, o que é esse totiente? Primeiro, precisamos entender o que é um número **COPRIMO**.
 
-Esse é um termo que é dado a números cujos únicos divisores comuns são 1 e -1, ou seja, o maior divisor comum (MDC) entre eles é 1. Pare entender melhor, vamos pegar como exemplo nosso módulo, que possui valor 15, e vamos fazer o MDC:
+Esse é um termo que é dado a números cujos únicos divisores comuns são 1 e -1, ou seja, o maior divisor comum (MDC) entre eles é 1. Para entender melhor, vamos pegar como exemplo nosso módulo, que possui valor 15, e vamos fazer o MDC:
 
-> Para relembrar, o MDC consite em você ir fatorando um número até encontrar o maior número inteiro que divide dois ou mais números inteiros sem deixar resto na divisão.
+> Para relembrar, o MDC consiste em você ir fatorando um número até encontrar o maior número inteiro que divide dois ou mais números inteiros sem deixar resto na divisão.
 
-Para facilitar, você pode utilizar o site [Calculadora.app](https://www.calculadora.app/matematica/mdc/). Abaixo, podemos ver a lista com todos os MDC do 15:
+Para facilitar, você pode utilizar o site [Calculadora.app](https://www.calculadora.app/matematica/mdc/). Abaixo, podemos ver a lista com todos os MDC de 15:
 
 | Operação      | Resultado | Coprimo com 15? |
 | ------------- | --------- | ----------------|
@@ -168,7 +167,7 @@ Assim, o número 8 é o nosso segredo que deve ser guardado a sete chaves!
 
 ### 3.3) Calculando a Chave Pública e criptografando a mensagem
 
-Para gerarmos a chave pública, a regra é que devemos escolher um número $e$ que não compartilhe divisores com 15 e que seja menor que ele. Eles são chamados de [**Números de Fermat**](https://en.wikipedia.org/wiki/Fermat_number), batizada em homenagem ao matemático francês do século XVII, Pierre de Fermat, que projetou uma fórmula que gerava esses números. 
+Para gerarmos a chave pública, a regra é que devemos escolher um número $e$ que não compartilhe divisores com 15 e que seja menor que ele. Eles são chamados de [**Números de Fermat**](https://en.wikipedia.org/wiki/Fermat_number), batizados em homenagem ao matemático francês do século XVII, Pierre de Fermat, que projetou uma fórmula que gerava esses números.
 
 
 Nesse caso, vamos escolher o **3** (mas poderia ser qualquer outro que atenda a essas condições). Este número comporá a chave pública. Uma vez que temos a chave pública, podemos agora utilizar a fórmula para criptografar:
@@ -187,7 +186,7 @@ Para exemplificar, vamos criptografar a mensagem "8". Assim, teremos:
 
 $$c = 8^3 \pmod{15}$$
 
-> No mundo real, não lidamos só com números, mas também com textos. Porém, o RSA só trabalha com números. Então, antes de criptografar uma mensagem, precisamos transformar o texto em um grande conjunto de bits. Para fazer isso, codificamos o texto em formatos como binário ou hexadecimal usando um padrão de codificação, como o[ UTF-8](https://pt.wikipedia.org/wiki/UTF-8).
+> No mundo real, não lidamos só com números, mas também com textos. Porém, o RSA só trabalha com números. Então, antes de criptografar uma mensagem, precisamos transformar o texto em um grande conjunto de bits. Para fazer isso, codificamos o texto em formatos como binário ou hexadecimal usando um padrão de codificação, como o [UTF-8](https://pt.wikipedia.org/wiki/UTF-8).
 
 
 Agora, vamos calcular isso:
@@ -290,11 +289,11 @@ O desafio foi oficialmente encerrado em 2007. Segundo a própria RSA Laboratorie
 
 
 
-Para fins de curiosidade, os maiores “n” que foram quebrados foram o RSA-768 e o RSA-250. O primeiro, foi quebrado em 2009 (ou seja, chegaram tarde para ganhar o prêmio...), e tinha o valor:
+Para fins de curiosidade, os maiores “n” que foram quebrados foram o RSA-768 e o RSA-250. O primeiro foi quebrado em 2009 (ou seja, chegaram tarde para ganhar o prêmio...) e tinha o valor:
 
 - n = 1230186684530117755130494958384962720772853569595334792197322452151726400507263657518745202199786469389956474942774063845925192557326303453731548268507917026122142913461670429214311602221240479274737794080665351419597459856902143413
 
- O grupo de matemáticos Thorsten Kleinjung, Kazumaro Aoki, Jens Franke, Arjen K. Lenstra, Emmanuel Thomé, Pierrick Gaudry, Alexander Kruppa, Peter Montgomery, Joppe W. Bos, Dag Arne Osvik, Herman te Riele, Andrey Timofeev e Paul Zimmermann, após dois anos, descobriram que este “n” era o produto da multiplicação dos seguintes números primos: 
+O grupo de matemáticos Thorsten Kleinjung, Kazumaro Aoki, Jens Franke, Arjen K. Lenstra, Emmanuel Thomé, Pierrick Gaudry, Alexander Kruppa, Peter Montgomery, Joppe W. Bos, Dag Arne Osvik, Herman te Riele, Andrey Timofeev e Paul Zimmermann, após dois anos, descobriu que este “n” era o produto da multiplicação dos seguintes números primos:
  
  - p = 33478071698956898786044169848212690817704794983713768568912431388982883793878002287614711652531743087737814467999489
  
@@ -306,7 +305,7 @@ Já o RSA-250 é mais recente, sendo quebrado em 2020. E aí você pode estar se
 
 Os primeiros números RSA (do RSA-100 até RSA-500) foram rotulados pelo número de dígitos decimais, e depois, a partir do RSA-576, passaram a usar dígitos binários.
 
-O RSA-250 segue essa primeira convenção, o que significa que possui um número de 250 dígitos, o que dá em torno de 829 bits. O RSA-768 já utiliza a nova nomenclatura, o que significa que ele possui 768 bits (que dá 232 dígitos). Assim, podemos perceber que o RSA-768 é mais "fraco".
+O RSA-250 segue essa primeira convenção, o que significa que possui um número de 250 dígitos, o que dá em torno de 829 bits. O RSA-768 já utiliza a nova nomenclatura, o que significa que ele possui 768 bits (o que dá 232 dígitos). Assim, podemos perceber que o RSA-768 é mais "fraco".
 
 O RSA-250 foi fatorado em fevereiro de 2020 por uma equipe internacional de pesquisadores liderada por Thorsten Kleinjung. Eles usaram o algoritmo mais avançado conhecido para fatoração clássica: [General Number Field Sieve](https://web.archive.org/web/20200228160544/https://lists.gforge.inria.fr/pipermail/cado-nfs-discuss/2020-February/001166.html). Esse algoritmo é atualmente o método mais eficiente para fatorar números gigantes usados em criptografia RSA. Aqui estão os valores:
 
@@ -319,7 +318,7 @@ E os números primos que geram ele são:
 
 - q = 3337202759497815655622601060535511422794076034476755466678452098702384172921003708025744867329688187756571898625803692062711
 
-> Essa mesma equipe também quebrou o RSA-240, em 2019. Para fins de comparação, o número possui 240 dígitos, ou, 795 bits. Veja a lista completa em [RSA numbers | Wikipedia](https://en.wikipedia.org/wiki/RSA_numbers)
+> Essa mesma equipe também quebrou o RSA-240, em 2019. Para fins de comparação, o número possui 240 dígitos, ou 795 bits. Veja a lista completa em [RSA numbers | Wikipedia](https://en.wikipedia.org/wiki/RSA_numbers)
 
 
 ## 4) Alguns detalhes técnicos
