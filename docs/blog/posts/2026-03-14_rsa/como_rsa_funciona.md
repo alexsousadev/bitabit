@@ -145,9 +145,9 @@ Para facilitar, você pode utilizar o site [Calculadora.app](https://www.calcula
 | MDC(15, 13)   | 1         | ✅              |
 | MDC(15, 14)   | 1         | ✅              |
 
-Com isso, podemos dizer que existem 8 números que são coprimos ao 15: 1, 2, 4, 7, 8, 11, 13 e 14. **O TOTIENTE É O NOME QUE DAMOS A ESSA QUANTIDADE DE COPRIMOS DE UM NÚMERO!** Nesse caso, o totiente de 15 é 8, simples, não?
+Com isso, podemos dizer que existem 8 números que são coprimos ao 15: 1, 2, 4, 7, 8, 11, 13 e 14. **O TOTIENTE É O NOME QUE DAMOS A ESSA QUANTIDADE DE COPRIMOS DE UM NÚMERO!** Nesse caso, o totiente de 15 é 8. Simples, não?
 
-No entanto, não vamos ter todo esse trabalho massivo sempre, e por isso é que citamos Euler: ele criou uma fórmula para facilitar isso. Quando $n$ é o produto de dois primos distintos $p$ e $q$, Euler mostrou que o totiente pode ser calculado assim:
+No entanto, não vamos ter todo esse trabalho massivo sempre, e é por isso que citamos Euler: ele criou uma fórmula para facilitar isso. Quando $n$ é o produto de dois primos distintos $p$ e $q$, Euler mostrou que o totiente pode ser calculado assim:
 
 $$
 \phi(n) = (p - 1) \times (q - 1)
@@ -167,10 +167,22 @@ Assim, o número 8 é o nosso segredo que deve ser guardado a sete chaves!
 
 ### 3.3) Calculando a Chave Pública e criptografando a mensagem
 
-Para gerarmos a chave pública, a regra é que devemos escolher um número $e$ que não compartilhe divisores com 15 e que seja menor que ele. Eles são chamados de [**Números de Fermat**](https://en.wikipedia.org/wiki/Fermat_number), batizados em homenagem ao matemático francês do século XVII, Pierre de Fermat, que projetou uma fórmula que gerava esses números.
+Para gerarmos a chave pública, a regra é que devemos escolher um número $e$ que seja maior que 1, menor que o nosso **totiente** (que é o 8) e que **não compartilhe divisores com ele** (ou seja, deve ser coprimo do totiente).
+
+Nesse caso, vamos escolher o **3**. 
+
+> Como a regra diz que precisamos de um número coprimo menor que nosso totiente (8), basta olhar os números de 1 até 7 e remover os que "compartilham divisores" com o 8. O número 8 é divisível por 1, 2, 4 e 8. Logo, todos os números pares do nosso trajeto (2, 4 e 6) compartilham o divisor 2 com o número 8 e, portanto, são desclassificados. Sobram apenas o 1, 3, 5 e 7...
+
+Este número escolhido comporá a chave pública $e$.
 
 
-Nesse caso, vamos escolher o **3** (mas poderia ser qualquer outro que atenda a essas condições). Este número comporá a chave pública. Uma vez que temos a chave pública, podemos agora utilizar a fórmula para criptografar:
+> Na prática, algoritmos modernos costumam escolher os chamados [**Números Primos de Fermat**](https://en.wikipedia.org/wiki/Fermat_number) para preencher o papel da chave $e$. Batizados em homenagem ao matemático Pierre de Fermat, que criou uma fórmula para gerá-los ($2^{2^n} + 1$), esses números têm uma propriedade "mágica" para os computadores.
+> 
+> Quando os transformamos em binário (a famosa linguagem de 0s e 1s), eles possuem quase apenas zeros, tendo apenas o número "1" nas pontas. Por exemplo, o número **65537** em binário é escrito assim: `10000000000000001`. 
+> 
+> Como a criptografia envolve elevar números a potências (nesta etapa, usamos o nosso $e$ como expoente), ter um expoente formado quase todo por zeros faz com que o processador do computador "pule" várias etapas nas contas de multiplicação. Isso torna a sua criptografia incrivelmente rápida de ser gerada, sem sacrificar em nada a segurança!
+
+Uma vez que temos a chave pública, podemos agora utilizar a fórmula para criptografar:
 
 
 $$c = m^e \pmod n$$
@@ -330,7 +342,13 @@ O RSA tem um limite físico: a mensagem $m$ tem que ser menor que o módulo $n$.
 
 Então, se você tem uma chave RSA de 2048 bits, você só consegue encriptar um "número" de até 2048 bits (cerca de 256 caracteres).
 
-Como encriptar um site inteiro ou um arquivo de 1GB? A resposta é: você não usa RSA para isso....
+Como encriptar um site inteiro ou um arquivo de 1GB? A resposta é: você não usa RSA para isso. Na prática, adotamos o que chamamos de **Criptografia Híbrida**.
+
+O processo real funciona assim:
+
+1. Usamos um algoritmo de **criptografia simétrica** (como o famoso e veloz AES) para criptografar o arquivo gigante (ou o tráfego do site) usando uma "chave de sessão" temporária e gerada aleatoriamente.
+2. Como essa chave simétrica é minúscula (ex: 256 bits), nós usamos o **RSA (assimétrico)** apenas para criptografar essa chave, e não o arquivo! Isso resolve de forma elegante o problema de troca de chaves, que é o calcanhar de aquiles da criptografia simétrica.
+3. Por fim, garantimos a segurança e a velocidade: o destinatário usa o RSA (com sua chave privada) para desembaralhar a chave simétrica e, em seguida, usa a chave simétrica para abrir o arquivo gigante de forma bem rápida. O protocolo HTTPS/TLS que protege nossa navegação na internet funciona base em arquiteturas assim!
 
 
 ## 5) Conclusão
