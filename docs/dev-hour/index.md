@@ -10,3 +10,4 @@ Diferente dos artigos finais do blog, aqui você encontrará notas brutas, desaf
 - [Como funciona um sensor de Impressão Digital](posts/como_funciona_digital/como_funciona_digital.md)
 - [Como funciona a tela do Kindle (e-ink)](./posts/e-ink-como-funciona/e-ink-como-funciona.md)
 - [Como o QR Code funciona?](posts/como-qrcode-funciona/como-qrcode-funciona.md)
+- [Como o Virtual DOM funciona?](posts/como-virtual-dom-funciona/como-virtual-dom-funciona.md)
