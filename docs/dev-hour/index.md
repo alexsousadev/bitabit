@@ -9,5 +9,6 @@ Diferente dos artigos finais do blog, aqui você encontrará notas brutas, desaf
 - [Criando um Emulador de Intel 8080](posts/intel8080-emulador/intel8080-emulador.md)
 - [Como funciona um sensor de Impressão Digital](posts/como_funciona_digital/como_funciona_digital.md)
 - [Como funciona a tela do Kindle (e-ink)](./posts/e-ink-como-funciona/e-ink-como-funciona.md)
+- [Como funciona o Código de Barras?](posts/como-codbarras-funciona/como-codbarras-funciona.md)
 - [Como o QR Code funciona?](posts/como-qrcode-funciona/como-qrcode-funciona.md)
 - [Como o Virtual DOM funciona?](posts/como-virtual-dom-funciona/como-virtual-dom-funciona.md)
