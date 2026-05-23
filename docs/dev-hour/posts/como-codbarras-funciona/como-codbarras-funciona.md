@@ -20,7 +20,11 @@ Como o processo dependia totalmente da velocidade de digitação humana, as fila
 
 Bernard correu para contar ao seu amigo, Norman Joseph Woodland. Woodland bitolou no problema. Ele se mudou para a Flórida para focar em uma solução e, em um belo dia na praia, começou a desenhar na areia os pontos e traços do Código Morse (tecnologia que ele conhecia bem por ter sido escoteiro). 
 
-Para contextualizar, o Código Morse é, essencialmente, o avô do código binário que usamos hoje: ele transforma letras e números em apenas dois estímulos (um curto e um longo). Criado nos anos 1830 por Samuel Morse, esse sistema foi feito para transmitir mensagens à distância através do telégrafo (aquele aparelho que enviava impulsos elétricos por um fio). Como não dava para enviar a voz humana ou letras escritas pelo fio, Morse criou um alfabeto baseado em apenas dois tipos de sinais sonoros ou elétricos:
+---
+
+## O que é o Código Morse?
+
+Para contextualizar, o Código Morse é, essencialmente, o avô do código binário que usamos hoje: ele transforma letras e números em apenas dois estímulos (um curto e um longo). Criado nos anos 1830 por Samuel Morse, esse sistema foi feito para transmitir mensagens à distância através do telégrafo (um aparelho que enviava impulsos elétricos por um fio). Como não dava para enviar a voz humana ou letras escritas pelo fio, Morse criou um alfabeto baseado em apenas dois tipos de sinais sonoros ou elétricos:
 
 - O Ponto ($\cdot$): Um sinal rápido e curto.
 - O Traço ($-$): Um sinal que dura o triplo do tempo do ponto.
@@ -31,7 +35,9 @@ Combinando esses pontos e traços, você consegue escrever qualquer palavra:
 ![](./img/codigo-morse.jpg){ align=center, width="500"}
 </figure>
 
-O grande estalo dele foi: E se, em vez de pontos e traços, eu puxar essas marcações para baixo, transformando-as em linhas verticais finas e grossas?
+---
+
+O grande estalo de Bernard foi: E se, em vez de pontos e traços, eu puxar essas marcações para baixo, transformando-as em linhas verticais finas e grossas?
 
 Ao fazer isso, Woodland percebeu que um feixe de luz (que mais tarde viria a ser o laser) poderia passar por aquelas linhas e ler o reflexo: as linhas pretas absorveriam a luz e as brancas a refletiriam de volta, gerando um sinal elétrico correspondente a uma sequência de números.
 
@@ -53,36 +59,85 @@ A imagem abaixo mostra exatamente o desenho técnico que constava no documento o
 
 A ideia era brilhante, mas estava à frente do seu tempo. Os computadores da década de 1950 eram gigantescos, os lasers ainda não existiam e a tecnologia para ler aquelas linhas de forma barata simplesmente não existia. A patente acabou esquecida por um tempo.
 
-O jogo só virou nos anos 1970, quando a IBM (onde Woodland agora trabalhava) e um engenheiro chamado George Laurer resgataram o conceito. Laurer percebeu que as linhas retas eram mais fáceis de imprimir sem borrar do que os círculos perfeitos. Isso porque, as gráficas da década de 1970 usavam prensas rotativas que corriam em alta velocidade. O grande problema técnico era que a tinta borrava na direção do movimento da prensa (conhecido na indústria gráfica como *ink slurring* ou *press gain*) e ocorria porque a pressão e o movimento contínuo do rolo faziam a tinta fresca "escorrer" levemente para frente ou para trás na direção em que o papel caminhava.
+O jogo só começou a mudar no final de 1969. Aquele problema das filas dos supermercados escalou tanto que as maiores associações de comércio dos Estados Unidos se uniram e contrataram a famosa empresa de consultoria McKinsey & Company. Juntos, eles fundaram um comitê chamado Uniform Product Code Council (UPCC). A missão era clara: definir um formato numérico padrão e desafiar as empresas de tecnologia a criarem, do zero, um símbolo visual que pudesse ser lido por máquinas.
 
+> Que mais tarde viria a se chamar UPC (Universal Product Code, ou Código Universal de Produto).
+
+Isso iniciou uma disputa feroz no Vale do Silício. Gigantes da tecnologia como RCA, Singer, Pitney Bowes e a própria IBM criaram laboratórios secretos para desenhar propostas competitivas e apresentá-las ao comitê.
+
+## O Nascimento do UPC pelas mãos de George Laurer
+
+Naquela época, o engenheiro Heard Baumeister apresentou duas fórmulas de códigos lineares que a IBM possuía guardadas, chamadas de Delta A e Delta B.
+
+A versão Delta B tentava calcular a informação comparando a largura exata da barra preta com a largura do espaço branco. Foi um desastre nos testes: se a prensa da gráfica colocasse um pouquinho mais de pressão ou tinta, a linha preta borrava para os lados (*ink spread*), engolia o espaço branco e o computador errava a leitura.
+
+Foi aí que, no meio de 1971, outro engenheiro da IBM chamado William "Bill" Crouse teve um estalo genial e inventou um novo código chamado Delta C. Em vez de medir a grossura da linha preta inteira, a matemática do Delta C media apenas a distância da borda inicial (esquerda) de uma linha até a borda inicial da linha seguinte.
+
+Essa sacada mudou tudo: se a gráfica borrasse e deixasse a linha preta mais gorda, ela cresceria para os dois lados por igual, mas a distância entre o início de uma linha e o início da outra continuaria milimetricamente a mesma. O código tornou-se imune aos borrões de tinta.
+
+> Infelizmente, não existem páginas de internet ou links diretos dedicados exclusivamente à documentação do Delta B e Delta C, pois eles foram apenas codificações internas da IBM. Mas o código Delta C, que resolvia o problema do borrão medindo de "borda a borda", foi patenteado por William Crouse em 1971 e você pode acessar em [US Patent US3723710A](https://patents.google.com/patent/US4533825A/en28)
+
+### O Círculo vs. A Linha Reta
+
+Mesmo com a matemática do Delta C funcionando, a indústria ainda estava obcecada pela ideia do código circular (o "alvo" de tiro ao alvo). Empresas concorrentes, como a RCA e a Litton Industries, insistiam que o círculo era melhor porque o funcionário podia passar o produto em qualquer direção sobre o vidro do caixa.
+
+Porém, Baumeister e George Laurer provaram que os círculos eram impossíveis de imprimir em alta velocidade sem deformar. Se a esteira da gráfica corresse rápido, o círculo virava uma elipse (uma forma oval) e o leitor falhava.
+
+Isso porque as gráficas da década de 1970 usavam prensas rotativas que corriam em altíssima velocidade. O grande problema técnico era que a tinta borrava na direção do movimento da prensa — um fenômeno conhecido na indústria gráfica como *ink slurring* ou *press gain*. A pressão e o movimento contínuo do rolo fazem a tinta fresca "escorrer" levemente para frente ou para trás na direção em que o papel caminhava.
 
 <figure markdown="span">
 ![](./img/rotative_print.jpg){ align=center, width="300"}
 </figure>
 
-Com isso, se você tentasse imprimir um círculo e a tinta borrasse um milímetro para o lado, o círculo virava uma elipse e o computador não conseguia calcular o diâmetro das linhas. O leitor falhava.
+Com as linhas retas, Laurer percebeu que o borrão da máquina apenas tornaria as linhas verticais um pouco mais altas ou compridas, mas a espessura exata de cada uma delas (que é onde a informação fica guardada) continuaria idêntica. No dia seguinte, ele sugeriu algo ainda melhor: cortar o código de barras em duas metades (lado esquerdo e lado direito).
 
-Com o código em linhas retas, o borrão apenas tornaria as linhas um pouco mais compridas, mas a espessura exata (que é o que carrega a informação) continuaria idêntica. Assim, ele redesenhou o sistema e criou o UPC (Universal Product Code), o tataravô do código de barras que está nos produtos que você consome até hoje. 
+Com essas duas propostas, eles conseguiram reduzir o tamanho do código de barras para um terço do tamanho do "alvo" circular da RCA. Laurer pegou a lógica Delta C de Bill Crouse e encolheu o tamanho final da etiqueta para apenas $38\text{ mm} \times 23\text{ mm}$. Era o nascimento visual do UPC-A.
+
+### O "Anel Mágico" e a Homologação
+
+Para convencer a diretoria da IBM e o comitê dos supermercados de que aquele pedacinho de linhas retas funcionava de verdade, Bill Crouse construiu um protótipo de leitor portátil que se usava no dedo, como se fosse um anel, conectado a uma pulseira.
+
+No dia 1º de dezembro de 1972, a equipe apresentou o projeto em Minnesota. Durante a reunião, Crouse usou seu "anel mágico" para ler os códigos impressos. Para chocar os executivos, ele passou o leitor em cima de uma foto de revista, velha e mal impressa, cheia de falhas bi-dimensionais. O leitor funcionou perfeitamente em quase todas as tentativas. A robustez da matemática da IBM esmagou os concorrentes.
+
+Para deixar o sistema 100% seguro contra fraudes, o matemático David Savir e George Laurer adicionaram a regra de inverter as cores no lado direito (a paridade par e ímpar) para o computador identificar se o produto passou de cabeça para baixo.
+
+> Esse detalhe será explicado com mais detalhes no tópico sobre o [Dígito Verificador](./como-codbarras-funciona.md#dígito-verificador).
+
+Por fim, um cientista do MIT chamado Murray Eden sugeriu o toque humano: colocar os números legíveis na parte de baixo do desenho, servindo como um sistema de segurança (*fail-safe*) caso o leitor óptico quebrasse.
+
+---
+
+Para fins de curiosidade, a imagem abaixo representa o design dos concorrentes que Laurer (IBM) derrotou. Os registros históricos preservaram os conceitos visuais exatos que foram apresentados ao comitê da UPCC:
+
+<figure markdown="span">
+![](./img/concorrencia.jpeg){ align=center, width="500"}
+</figure>
+
+Embora o leitor de anel de Crouse tenha sido o argumento definitivo de portabilidade para convencer a diretoria da IBM de que a tecnologia funcionava de forma simples e rápida, foi a engenharia de impressão das linhas retas que garantiu a vitória no comitê.
+
+---
 
 ## A Anatomia Matemática do UPC (Universal Product Code)
 
+Agora que já mergulhamos na história e entendemos o contexto por trás da criação do UPC, vamos adentrar na sua estrutura.
 
-A menor unidade de um código de barras é chamada de "módulo", com uma largura padrão de 0,33 milímetros. Ele é incrivelmente pequeno. 
+Primeiro, precisamos quebrar o código de barras em suas menores partes. A menor unidade de um código de barras é chamada de "módulo", com uma largura padrão de 0,33 milímetros (basicamente, é a linha mais fina possível). Ele é incrivelmente pequeno. 
 
-> Essa padronização é mantida pela GS1 (Global System 1), uma organização internacional, neutra e sem fins lucrativos, responsável por desenvolver e manter os padrões globais de comunicação empresarial. A sua função mais conhecida é a emissão e a padronização dos códigos de barras e das identidades digitais de produtos.
+> Essa padronização de tamanho é mantida pela GS1 (Global System 1), uma organização internacional, neutra e sem fins lucrativos, responsável por desenvolver e manter os padrões globais de comunicação empresarial.
 
 Isso garante que um código de barras impresso no Brasil seja lido exatamente do mesmo jeito na China, nos Estados Unidos ou em qualquer outro lugar.
 
 > Você pode ver as regras de tamanho em [GS1 - UPC Specifications](https://www.gs1ie.org/standards/data-carriers/barcodes/upc/).
 
-A GS1 permite que esse tamanho varie um pouco para caber em embalagens diferentes:
+Mas, de forma geral, a GS1 permite que esse tamanho varie um pouco para caber em embalagens diferentes:
 
 - O tamanho mínimo permitido: $0,26 \text{ mm}$ (usado em produtos bem pequenos, como chicletes ou esmaltes).
 - O tamanho máximo permitido: $0,66 \text{ mm}$ (usado em caixas grandes de papelão em estoques, para o operador conseguir ler de longe).
 
-> Como a organização global GS1 precisava atender a diferentes tipos de indústrias, tamanhos de embalagens e necessidades de transporte, ela criou vários padrões de códigos de barras ao longo dos anos. No entanto, os que sobreviveram até hoje é o UPC-A (O código de barras tradicional) e o UPC-E (uma versão compacta do UPC-A, usada em produtos pequenos).
+> Aliás, como a organização global GS1 precisava atender a diferentes tipos de indústrias, tamanhos de embalagens e necessidades de transporte, ela criou vários padrões de códigos de barras ao longo dos anos. No entanto, os que sobreviveram até hoje é o UPC-A (O código de barras tradicional) e o UPC-E (uma versão compacta do UPC-A, usada em produtos pequenos). Haverá um breve tópico sobre isso neste post, mas é importante entender o "normal" primeiro, então vá com calma...
 
 Quando olhamos para um código de barras de longe, vemos linhas pretas de vários tamanhos (umas finas, outras médias, outras bem grossas). Mas essas linhas grossas são apenas vários módulos pretos colocados colados um ao lado do outro. Na prática, isso significa que estamos codificando uma informação de forma binária: 
+
 <figure markdown="span">
 ![](./img/scanner.png){ align=center, width="500"}
 </figure>
@@ -90,7 +145,7 @@ Quando olhamos para um código de barras de longe, vemos linhas pretas de vário
 - **Módulo de cor de fundo (Branco):** É definido normativamente com o valor lógico $0$.
 - **Módulo de cor de primeiro plano (Preto):** É definido normativamente com o valor lógico $1$.
 
-Assim, tudo que temos ali são números codificados em binário. No entanto, não temos apenas o código em si do produto, temos também uma série de módulos que servem para orientar o leitor e garantir que a leitura seja feita corretamente. Assim, podemos dividir um código de barras em três grandes grupos: 
+Assim, tudo que temos ali são números codificados em binário. No entanto, não temos apenas o código em si do produto, temos também uma série de módulos que servem para orientar o leitor e garantir que a leitura seja feita corretamente. Dessa forma, podemos dividir um código de barras em três grandes grupos: 
 
 1. **Blocos de dados (Data Blocks):** São os módulos que carregam a informação do produto. 
 
@@ -105,7 +160,7 @@ Assim, tudo que temos ali são números codificados em binário. No entanto, nã
 
     > É obrigatório ter um espaço em branco de pelo menos 9 módulos de largura antes e depois do código. Isso serve para o leitor entender onde o código começa e onde ele termina. 
 
-Por exemplo, esse código:
+Por exemplo, um código assim:
 
 <div style="text-align: center; margin: 1.5rem 0;">
   <img src="../img/upc_a_normal.svg" alt="Código de barras UPC-A normal" style="background-color: #ffffff; padding: 12px; border-radius: 6px; display: inline-block; width: 200px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" />
@@ -207,6 +262,7 @@ Já para o lado direito do código, a receita do número 1 é diferente (basicam
 $$\text{Preto} - \text{Preto} - \text{Preto} - \text{Branco} - \text{Branco} - \text{Preto} - \text{Branco}$$
 
 ---
+
 ### Por que existe essa diferença?
 
 A mudança de receita existe por um motivo simples: dar o sentido da direção para o computador, da mesma forma que uma placa de trânsito diz se uma rua é "mão" ou "contramão".
@@ -221,7 +277,122 @@ O computador leria todos os números de trás para frente. Em vez de ler o códi
 
 - No Lado Direito: Todos os números foram desenhados com um número PAR de fatias pretas.
 
-Assim, quando o laser cruza o código de barras, a primeira coisa que o software faz é contar a paridade dos blocos de 7 fatias que ele acabou de ler. Se o resultado for ímpar, ele sabe que está lendo o lado esquerdo. Se for par, ele sabe que está lendo o lado direito. Dessa forma, caso esteja sendo lido invertido Em vez de dar um erro e travar o caixa, o computador simplesmente faz uma operação matemática interna: ele espelha e inverte a ordem dos bits na memória, transformando o que ele leu de trás para frente no código correto.
+Assim, quando o laser cruza o código de barras, a primeira coisa que o software faz é contar a paridade dos blocos de 7 fatias que ele acabou de ler. Se o resultado for ímpar, ele sabe que está lendo o lado esquerdo. Se for par, ele sabe que está lendo o lado direito. Dessa forma, caso esteja sendo lido invertido, em vez de dar um erro e travar o caixa, o computador simplesmente faz uma operação matemática interna: ele espelha e inverte a ordem dos bits na memória, transformando o que ele leu de trás para frente no código correto.
 
 ---
 
+Levando em conta essa organização, todo código UPC-A tem exatamente 30 barras pretas. Como ele usa 12 dígidos para dados, isso significa que a capacidade máxima é de 100 bilhões de combinações de produtos diferentes ($10^{11}$ ou $100.000.000.000$). É espaço de sobra para registrar produtos por décadas.
+
+## E o que são aqueles números embaixo?
+
+Quando olhamos para um código de barras impresso na embalagem de um produto, costumamos ver alguns números alinhados embaixo das barras. Como já citado, eles são exatamente os números que estão codificados nas barras. Foram feitos para que os humanos possam ler o código de barras caso precise digitar manualmente em algum sistema por algum problema.
+
+Porém, se você reparar bem na organização de um código do tipo UPC-A, vai notar que o primeiro número e o último ficam "jogados" para fora, meio isolados nos cantos. No nosso exemplo anterior, temos o 0 e 2 isolados nas extremidades:
+
+<div style="text-align: center; margin: 1.5rem 0;">
+  <img src="../img/upc_a_normal.svg" alt="Código de barras UPC-A normal" style="background-color: #ffffff; padding: 12px; border-radius: 6px; display: inline-block; width: 200px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" />
+</div>
+
+
+Segundo as regras oficiais da GS1, eles significam:
+
+- **Esquerdo**: É o dígito de agrupamento. Ele identifica o tipo de produto ou categoria ao qual o item pertence.
+
+    > No exemplo, é o número 0.
+
+- **Direito**: É o dígito verificador. Ele é usado para garantir que o código de barras foi lido corretamente. Faremos uma breve explicação de como ele funciona depois.
+
+    > No exemplo, é o número 2.
+
+### Dígito de Agrupamento
+
+Esse primeiro dígito (que fica isolado no canto esquerdo) avisa ao computador da loja com que tipo de produto ele está lidando:
+
+| Código | Descrição | 
+| --- | --- |
+| 0, 1, 6, 7, 8, 9 | São para produtos comuns de supermercado. Onde os números seguintes identificam a fábrica e o produto. |
+| 2 | É reservado para itens pesados na hora (como carne, queijo ou frutas). Quando o mercado embala uma bandeja de carne, o próprio mercado gera esse código. O sistema lê o número 2, entende que é um item de peso variável e usa os últimos números do código para puxar o peso ou o preço direto da balança |
+| 3 | Reservado para medicamentos e remédios (nos EUA, os números do meio correspondem ao registro oficial de drogas do governo, o NDC). |
+| 4 | Reservado para uso interno da própria loja, geralmente usado em cartões de fidelidade ou cupons de desconto do próprio estabelecimento. |
+| 5 | Reservado para cupons de desconto de fabricantes (aqueles que dão desconto cumulativo em produtos específicos). |
+
+### Dígito Verificador
+
+A única função dele é responder a uma pergunta para o computador: "As barras foram lidas corretamente ou o código está riscado, sujo ou amassado?"
+
+
+Quando o laser passa pelo código de barras, o computador lê os 11 primeiros números e, em uma fração de milissegundo, faz uma conta matemática com eles. O resultado final dessa conta obrigatoriamente precisa dar igual ao último número. Mas... que cálculo é esse?
+
+> Para não prolongar demais essa página, veja o cálculo do dígito verificador no link: [Como funciona o dígito verificador do código de barras](calculo-digito-verificador.md)
+
+---
+
+# E quando o espaço é pequeno? O modelo UPC-E
+
+Toda essa estrutura de 12 dígitos funciona perfeitamente em caixas de cereal, garrafas de refrigerante ou livros. Mas o que acontece quando o produto é minúsculo, como um chiclete, um batom ou um esmalte? O código padrão de 12 dígitos (UPC-A) simplesmente não cabe na embalagem.
+
+Para resolver isso, a GS1 criou o UPC-E, que é a versão "compactada" do código de barras. Ele possui as seguintes diferenças:
+
+1. Elimina todos os zeros no meio do código;
+2. Não possui as barras de "portão" no início e no fim;
+3. Usa apenas 6 dígitos para codificar o produto, ao invés de 12.
+
+Abaixo temos um exemplo para você notar a diferença:
+
+<figure markdown="span">
+![](./img/UPC-A%20and%20UPC-E.webp){ align=center, width="500"}
+</figure>
+
+> Já que ele possui apenas 6 dígitos, ele consegue ter uma capacidade máxima de 1 milhão de produtos diferentes ($10^6$ ou $1.000.000$).
+
+# E os outros códigos de barras?
+
+<figure markdown="span">
+![](./img/typesbarcode.jpeg){ align=center, width="500"}
+</figure>
+
+Embora o UPC tenha sido o pioneiro nas prateleiras dos supermercados, a necessidade de automatizar diferentes indústrias fez com que o mundo da tecnologia criasse dezenas de outros formatos. **Cada modelo de código de barras que existe hoje nasceu para resolver uma limitação geográfica, de espaço físico ou de tipo de informação que o padrão original da IBM não conseguia tratar sozinho.**
+
+## 1) EAN-13: O padrão mundial
+
+Quando essa tecnologia cruzou o oceano em 1977, a Europa percebeu que precisava de um padrão que identificasse o comércio internacional; assim nasceu o EAN-13, que adicionou um dígito ao modelo americano para incluir o país de origem do produto.
+
+Seguindo a mesma lógica de portabilidade do irmão americano, os europeus também criaram o EAN-8, uma versão reduzida para 8 dígitos usada para etiquetar embalagens pequenas.
+
+## 2) Code 39
+
+Fora do varejo tradicional, as necessidades eram outras, pois indústrias e transportadoras precisavam registrar letras e não apenas números. Para resolver isso, surgiu o Code 39, o primeiro modelo alfanumérico da história, muito adotado pelo setor automotivo e pelo Departamento de Defesa dos EUA devido à sua alta segurança contra falhas, ideal para inventários de grande porte e peças de metal.
+
+## 3) Code 128
+
+Pouco depois, buscando mais eficiência de espaço, foi desenvolvido o Code 128, um código de altíssima densidade que consegue armazenar letras, números e símbolos de forma muito mais compacta, tornando-se o padrão absoluto para o rastreio de encomendas na logística global e em crachás corporativos.
+
+## 4) Interleaved 2 of 5
+
+Para lidar com impressões de qualidade inferior, como caixas de papelão ásperas de armazéns, foi criado o Interleaved 2 of 5 (Intercalado 2 de 5), que armazena números em pares e possui alta tolerância a falhas de tinta — uma característica que o tornou perfeito para ser adotado, até os dias de hoje, na leitura de boletos bancários.
+
+## 5) Codabar
+
+Já o Codabar nasceu em 1972 com foco em impressoras térmicas antigas, utilizando letras especiais para marcar o início e o fim da leitura, o que garantiu seu uso histórico em tubos de ensaio de bancos de sangue e etiquetas de livros em bibliotecas.
+
+## 6) PostNet
+
+Por fim, até os serviços postais ganharam soluções exclusivas, como o PostNet, um código peculiar composto por barras de alturas variadas (curtas e longas) desenhado sob medida pelo correio americano para decifrar os CEPs nos envelopes e acelerar a triagem de cartas em altíssima velocidade.
+
+---
+
+# Conclusão
+
+Olhar para toda essa evolução nos mostra que o código de barras linear, inventado por George Laurer, foi uma das grandes revoluções da história moderna. Ele transformou a gestão de estoques, a logística e o varejo em escala global, trazendo eficiência inédita para a economia mundial.
+
+Mas... mesmo sendo brilhante para sua época e sendo usado até hoje, ele acabou encontrando um teto técnico intransponível.
+
+O grande calcanhar de Aquiles do código de barras tradicional era a sua limitação geométrica: ele só lê informações em uma única direção (da esquerda para a direita). Se a indústria precisasse guardar mais dados sobre um produto, o código tinha que ficar cada vez mais comprido, virando uma linha gigante impossível de imprimir. 
+
+Além disso, ele exigia precisão cirúrgica: o leitor precisava passar no ângulo exato sobre as linhas, e se o código estivesse minimamente sujo, amassado ou rasgado, o sistema simplesmente quebrava e não lia nada.
+
+Essa fragilidade cobrou o seu preço no Japão. Uma subsidiária da Toyota precisava rastrear o estoque de autopeças em tempo real, mas os operadores perdiam muito tempo tentando alinhar o leitor laser com os códigos nas caixas. Para piorar, quando a tecnologia foi levada para o campo para ajudar os fazendeiros no rastreamento e controle de saúde das vacas, o código de barras tradicional fracassou feio. Afinal, uma vaca não fica parada esperando o feixe de luz passar na horizontal perfeita e, para completar, as etiquetas no pasto viviam cobertas de lama e esterco, o que cegava completamente o leitor laser.
+
+Foi a partir desse cenário de frustração que o engenheiro Masahiro Hara, em 1994, redesenhou o conceito do zero e criou o QR Code. Mas isso é uma história para outra página.
+
+Até mais!
