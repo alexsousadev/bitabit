@@ -4,13 +4,13 @@ Você provavelmente ouve esse som quase todo dia: o "bipe" do caixa eletrônico 
 
 A maioria de nós passa a vida inteira achando que o scanner está lendo aquelas linhas pretas. Mas a verdade é o oposto: o leitor óptico ignora o preto e lê os espaços em branco. Como assim?
 
-Vamos entender como essa tecnologia funciona (e por que ela acabou ficando pequena demais para a indústria).
+Vamos entender como essa tecnologia funciona e porque ela acabou ficando pequena demais para a indústria.
 
 # Como tudo começou...
 
-A ideia não nasceu em um laboratório de alta tecnologia, mas sim de uma conversa de corredor em 1948, nos Estados Unidos. Bernard Silver, um estudante do Drexel Institute, ouviu por acaso o presidente de uma rede de supermercados implorando a um diretor da faculdade por um sistema automático que agilizasse as filas do caixa e controlasse o estoque.
+A ideia não nasceu em um laboratório de alta tecnologia, mas sim de uma conversa de corredor em 1948, nos Estados Unidos. Bernard Silver, um estudante do Drexel Institute, localizada na Filadélfia, ouviu por acaso o presidente de uma rede de supermercados implorando a um diretor da faculdade por um sistema automático que agilizasse as filas do caixa e controlasse o estoque. Mas, qual era o problema?
 
-Naquela época, os operadores de caixa precisavam olhar para cada produto, identificar o preço impresso ou colado na embalagem e digitar manualmente, dígito por dígito, em caixas registradoras mecânicas. Esse movimento mecânico, acelerado e repetido milhares de vezes por dia fez com que muitos caixas desenvolvessem problemas crônicos de saúde, sendo a síndrome do túnel do carpo a mais comum e dolorosa delas (uma inflamação nos nervos do pulso causada por esforço repetitivo).
+Naquela época, os operadores de caixa precisavam olhar para cada produto, identificar o preço impresso ou colado na embalagem e digitar manualmente, dígito por dígito, em caixas registradoras mecânicas. Esse movimento mecânico, acelerado e repetido milhares de vezes por dia fez com que muitos caixas desenvolvessem problemas crônicos de saúde, sendo a [síndrome do túnel do carpo](https://share.google/aimode/mvH9ppXfqoA0GWQ3w) a mais comum e dolorosa delas (uma inflamação nos nervos do pulso causada por esforço repetitivo).
 
 <figure markdown="span">
 ![](./img/caixa_passado.webp){ align=center, width="500"}
@@ -18,7 +18,7 @@ Naquela época, os operadores de caixa precisavam olhar para cada produto, ident
 
 Como o processo dependia totalmente da velocidade de digitação humana, as filas nos supermercados eram gigantescas, gerando gargalos operacionais monstruosos para os donos de redes de comércio.
 
-Bernard correu para contar ao seu amigo, Norman Joseph Woodland. Woodland bitolou no problema. Ele se mudou para a Flórida para focar em uma solução e, em um belo dia na praia, começou a desenhar na areia os pontos e traços do Código Morse (tecnologia que ele conhecia bem por ter sido escoteiro). 
+Bernard correu para contar ao seu amigo, Norman Joseph Woodland. Woodland bitolou no problema. Ele se mudou para a Flórida para focar em uma solução e, em um belo dia na praia, começou a desenhar na areia os pontos e traços do Código Morse (tecnologia que ele conhecia bem por ter sido escoteiro). Certo, mas o que era isso?
 
 ---
 
@@ -37,7 +37,7 @@ Combinando esses pontos e traços, você consegue escrever qualquer palavra:
 
 ---
 
-O grande estalo de Bernard foi: E se, em vez de pontos e traços, eu puxar essas marcações para baixo, transformando-as em linhas verticais finas e grossas?
+Voltando para o caso da praia, o grande estalo de Bernard foi: E se, em vez de pontos e traços, eu puxar essas marcações para baixo, transformando-as em linhas verticais finas e grossas?
 
 Ao fazer isso, Woodland percebeu que um feixe de luz (que mais tarde viria a ser o laser) poderia passar por aquelas linhas e ler o reflexo: as linhas pretas absorveriam a luz e as brancas a refletiriam de volta, gerando um sinal elétrico correspondente a uma sequência de números.
 
@@ -91,7 +91,7 @@ Isso porque as gráficas da década de 1970 usavam prensas rotativas que corriam
 
 Com as linhas retas, Laurer percebeu que o borrão da máquina apenas tornaria as linhas verticais um pouco mais altas ou compridas, mas a espessura exata de cada uma delas (que é onde a informação fica guardada) continuaria idêntica. No dia seguinte, ele sugeriu algo ainda melhor: cortar o código de barras em duas metades (lado esquerdo e lado direito).
 
-Com essas duas propostas, eles conseguiram reduzir o tamanho do código de barras para um terço do tamanho do "alvo" circular da RCA. Laurer pegou a lógica Delta C de Bill Crouse e encolheu o tamanho final da etiqueta para apenas $38\text{ mm} \times 23\text{ mm}$. Era o nascimento visual do UPC-A.
+Com essas duas propostas, eles conseguiram reduzir o tamanho do código de barras para um terço do tamanho do "alvo" circular da RCA. Laurer pegou a lógica Delta C de Bill Crouse e encolheu o tamanho final da etiqueta para apenas $38\text{ mm} \times 23\text{ mm}$. Era o nascimento visual do código de barras que conhecemos hoje.
 
 ### O "Anel Mágico" e a Homologação
 
@@ -99,7 +99,7 @@ Para convencer a diretoria da IBM e o comitê dos supermercados de que aquele pe
 
 No dia 1º de dezembro de 1972, a equipe apresentou o projeto em Minnesota. Durante a reunião, Crouse usou seu "anel mágico" para ler os códigos impressos. Para chocar os executivos, ele passou o leitor em cima de uma foto de revista, velha e mal impressa, cheia de falhas bi-dimensionais. O leitor funcionou perfeitamente em quase todas as tentativas. A robustez da matemática da IBM esmagou os concorrentes.
 
-Para deixar o sistema 100% seguro contra fraudes, o matemático David Savir e George Laurer adicionaram a regra de inverter as cores no lado direito (a paridade par e ímpar) para o computador identificar se o produto passou de cabeça para baixo.
+Para deixar o sistema 100% seguro contra fraudes, o matemático David Savir e George Laurer adicionaram a regra de inverter as cores no lado direito para o computador identificar se o produto passou de cabeça para baixo.
 
 > Esse detalhe será explicado com mais detalhes no tópico sobre o [Dígito Verificador](./como-codbarras-funciona.md#dígito-verificador).
 
@@ -115,7 +115,39 @@ Para fins de curiosidade, a imagem abaixo representa o design dos concorrentes q
 
 Embora o leitor de anel de Crouse tenha sido o argumento definitivo de portabilidade para convencer a diretoria da IBM de que a tecnologia funcionava de forma simples e rápida, foi a engenharia de impressão das linhas retas que garantiu a vitória no comitê.
 
+
 ---
+
+## O Primeiro "Bip"
+
+O primeiro produto escaneado na história não foi uma grande caixa ou um item caro, mas sim um pacotinho de chicletes Wrigley's Juicy Fruit (sabor tutti-frutti). Esse evento aconteceu no dia 26 de junho de 1974, às 8h01 da manhã, em um supermercado chamado Marsh's Supermarket, na cidade de Troy, Ohio (EUA). A operadora de caixa que fez as honras se chamava Sharon Buchanan, e o cliente era Clyde Dawson. Dawson subiu até o caixa com um carrinho cheio de itens, mas puxou o chiclete primeiro para fazer o teste histórico. O scanner (desenvolvido pela empresa Spectra-Physics usando a tecnologia de código linear da IBM) leu o código de primeira com um "bipe" limpo. Abaixo está a foto do chiclete e do primeiro scanner utilizado.
+
+<figure markdown="span">
+![](./img/primeirp_beep.jpeg){ align=center, width="500"}
+</figure>
+
+<figure markdown="span">
+![](./img/scanner1.png){ align=center, width="500"}
+</figure>
+
+> O sucesso foi tão marcante que, hoje em dia, [uma réplica desse scanner original e um dos pacotes de chiclete daquele mesmo lote de 1974 estão preservados e em exposição no prestigiado museu Smithsonian (o National Museum of American History), em Washington, D.C.](https://www.si.edu/object/supermarket-scanner:nmah_892778)
+
+A escolha não foi por acaso. O comitê dos supermercados e os engenheiros queriam provar uma coisa crucial: se o leitor óptico e a gráfica conseguissem funcionar perfeitamente em uma embalagem minúscula, cilíndrica, amassada e plastificada de um chiclete que custava apenas 67 centavos de dólar, funcionariam em qualquer outra coisa do planeta.
+
+
+### Sempre teve o som?
+
+Não. O "bipe" surgiu em 1974 por um motivo de psicologia e agilidade. Nos primeiros testes, os leitores eram silenciosos. Isso obrigava o funcionário a parar e olhar para a tela a cada produto para ter certeza de que o preço tinha entrado, o que atrasava as filas.
+
+Para resolver isso, os engenheiros colocaram um pequeno alto-falante no scanner com uma regra simples: se o cálculo do dígito verificador estivesse correto, a máquina disparava um som curto.
+
+O bipe é o computador dizendo: "A matemática fechou, o preço foi registrado. Pode passar o próximo."
+
+O som é um estalido agudo (entre 2 kHz e 4 kHz) porque essa é a faixa de frequência que o ouvido humano capta melhor, permitindo que o funcionário isole o som mesmo no meio do barulho do supermercado.
+
+
+---
+
 
 ## A Anatomia Matemática do UPC (Universal Product Code)
 
@@ -167,6 +199,8 @@ Por exemplo, um código assim:
 </div>
 
 pode ser dividido assim:
+
+> A tabela abaixo não representa o código de barras acima, mas sim um exemplo de como ele é estruturado e como seria a representação de cada número no código de barras.
 
 <div class="barcode-table-container" style="overflow-x: auto; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border-radius: 8px;">
   <table style="text-align: center; border-collapse: collapse; width: 100%; min-width: 800px; font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif; background-color: #80A080; border: none; color: #ffffff; margin: 0;">
@@ -325,6 +359,18 @@ Quando o laser passa pelo código de barras, o computador lê os 11 primeiros n�
 
 > Para não prolongar demais essa página, veja o cálculo do dígito verificador no link: [Como funciona o dígito verificador do código de barras](calculo-digito-verificador.md)
 
+
+### E o resto?
+
+Os valores númericos centrais são os dados em si, ou seja, o código do produto. Geralmente, são divididos entre código da empresa e código do produto. Então, usando aquela código de barras de exemplo:
+
+- **36000:** Código da empresa (identifica quem fabricou ou distribui o produto). Por exemplo, sinaliza que o produto foi fabricado por "Colgate-Palmolive".
+- **29145:** Código do produto (identifica o produto específico). Por exemplo, pode ser o "Creme Dental Colgate Total 12 de 90g".
+
+As empresas não inventam os códigos do nada; elas alugam um bloco exclusivo de números da GS1 para garantir que nenhuma empresa no mundo tenha um código igual ao seu. A divisão do código depende do tamanho da fabricante. Grandes corporações recebem um prefixo de empresa curto (sobrando mais dígitos para cadastrar milhares de produtos). Pequenos produtores recebem um prefixo longo (sobrando poucos dígitos, o suficiente para uma linha pequena de produtos).
+
+> Algo muito parecido com a divisão de IPs, onde uma faixa maior ou menor é separada para os hosts ou roteadores, dependendo do tamanho da empresa.
+
 ---
 
 # E quando o espaço é pequeno? O modelo UPC-E
@@ -378,6 +424,30 @@ Já o Codabar nasceu em 1972 com foco em impressoras térmicas antigas, utilizan
 ## 6) PostNet
 
 Por fim, até os serviços postais ganharam soluções exclusivas, como o PostNet, um código peculiar composto por barras de alturas variadas (curtas e longas) desenhado sob medida pelo correio americano para decifrar os CEPs nos envelopes e acelerar a triagem de cartas em altíssima velocidade.
+
+---
+
+# Desafios na Implementação do Código de Barras
+
+Assim como qualquer nova tecnologia, a introdução do código de barras enfrentou forte ceticismo inicial por parte de diversos setores:
+
+- **Consumidores**: Questionavam a precisão dos preços registrados.
+
+    > Eles pensavam: "Se o preço não está grudado no produto, como vou saber se a máquina me cobrou o valor certo na hora de passar no caixa?". Havia o medo real de que os supermercados alterassem os preços no computador central sem que o cliente percebesse.
+
+- **Sindicatos**: Temiam que as máquinas causassem desemprego em massa.
+
+    > Os sindicatos perceberam que a leitura óptica faria as filas andarem muito mais rápido e eliminaria a necessidade de funcionários para carimbar preços em cada produto do estoque.
+
+- **Varejistas e Fabricantes**: Mostravam-se relutantes em investir em leitores para produtos que ainda não vinham com o código impresso na embalagem.
+
+    > Implementar o código de barras exigia um investimento altíssimo. Os donos de supermercados precisavam comprar computadores centrais caros e leitores de laser que ainda eram tecnologia de ponta. Os fabricantes, por sua vez, precisavam mudar suas linhas de produção e designs de embalagem para imprimir o código. Ninguém queria dar o primeiro passo e perder dinheiro.
+
+- **População Geral**: Havia o medo de que o ["Grande Irmão" (1984 - George Orwell)](https://share.google/aimode/tBDfyyY5aR02ICXQZ) usasse a tecnologia para vigiar os cidadãos.
+- **Teorias da Conspiração**: Alguns cristãos, influenciados pelo livro ["The New Money System 666" de Mary Stuart Relf](https://archive.org/details/newmoneysystem6600relf), afirmavam que os códigos ocultavam o número 666, representando a "Marca da Besta" bíblica.
+
+    > Como já explicado, o código de barras UPC possui três barras de proteção mais longas (no início, no meio e no fim) que servem apenas para guiar o laser do leitor. Acontece que, visualmente, o desenho dessas três barras é idêntico ao padrão que o sistema usa para ler o número 6. Para os religiosos da época, ver uma estrutura que parecia fixar o 6-6-6 em um sistema feito justamente para "comprar e vender" foi o encaixe perfeito com a profecia apocalíptica da Marca da Besta.
+
 
 ---
 
