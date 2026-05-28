@@ -401,9 +401,32 @@ Embora o UPC tenha sido o pioneiro nas prateleiras dos supermercados, a necessid
 
 ## 1) EAN-13: O padrão mundial
 
-Quando essa tecnologia cruzou o oceano em 1977, a Europa percebeu que precisava de um padrão que identificasse o comércio internacional; assim nasceu o EAN-13, que adicionou um dígito ao modelo americano para incluir o país de origem do produto.
+Quando a tecnologia do código de barras cruzou o oceano em 1977, a Europa e o resto do mundo quiseram adotá-la. Porém, havia um problema geográfico: o UPC tinha sido feito sob medida para os Estados Unidos e Canadá. O resto do mundo precisava de um sistema que identificasse o país de origem de cada produto no comércio internacional.
 
-Seguindo a mesma lógica de portabilidade do irmão americano, os europeus também criaram o EAN-8, uma versão reduzida para 8 dígitos usada para etiquetar embalagens pequenas.
+Para resolver isso, nasceu o EAN-13. Os engenheiros pegaram a exata mesma estrutura matemática do UPC que vimos lá atrás, mas adicionaram um décimo terceiro ($13^{\circ}$) dígito na frente do código para indicar o país.
+
+Mas aí surgiu um problemão: se os computadores do mundo todo passassem a usar 13 dígitos, como eles leriam os bilhões de produtos americanos que já estavam impressos com o UPC de 12 dígitos?
+
+A solução da GS1 (a organização global de padrões) foi de uma elegância matemática genial: eles transformaram o número zero ($0$) no código oficial dos Estados Unidos e do Canadá.
+
+Funciona assim: na tabela global de países da GS1, a faixa que vai de 000 a 139 ficou reservada exclusivamente para os EUA e Canadá. Então, para o sistema internacional ler um código UPC americano de 12 dígitos, o software do caixa coloca um zero invisível automaticamente na frente dele.
+
+Se pegarmos o nosso código de exemplo lá de trás, o UPC-A 036000291452 (12 dígitos) é lido pelo sistema global como 0036000291452 (13 dígitos).
+
+Pronto! O mistério foi desfeito de forma unificada. É por isso que, hoje, qualquer computador do planeta lê os dois formatos sem travar:
+
+- Se o código tem 13 dígitos e começa entre 000 e 139, o sistema sabe que é um código nativo americano (UPC) adaptado com o zero na frente.
+
+- Se começa com 789 ou 790, o sistema sabe que a empresa registrou o produto no Brasil.
+
+- Se começa com 560, foi registrado em Portugal.
+
+> *O "Mito" da Origem:* Um detalhe importante para não cair em pegadinhas é que esse prefixo indica apenas o país onde a empresa registrou a sua marca, e não onde a mercadoria foi fabricada de fato. Uma marca americana pode fabricar suas camisetas na China, mas o código de barras continuará iniciando com o zero dos EUA.
+
+Seguindo a mesma lógica de portabilidade, os europeus também criaram o EAN-8, uma versão reduzida para 8 dígitos usada exclusivamente para etiquetar embalagens muito pequenas onde o código de 13 dígitos não caberia.
+
+Você pode consultar uma tabela completa com os principais prefixos de países em [GS1 Company Prefix](https://www.gs1.org/standards/id-keys/company-prefix). A Wikipedia também organizou essa lista de uma forma um pouco mais amigável em [List of GS1 country codes](https://en.wikipedia.org/wiki/List_of_GS1_country_codes)
+
 
 ## 2) Code 39
 
