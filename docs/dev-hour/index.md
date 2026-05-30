@@ -12,3 +12,4 @@ Diferente dos artigos finais do blog, aqui você encontrará notas brutas, desaf
 - [Como funciona o Código de Barras?](posts/como-codbarras-funciona/como-codbarras-funciona.md)
 - [Como o QR Code funciona?](posts/como-qrcode-funciona/como-qrcode-funciona.md)
 - [Como o Virtual DOM funciona?](posts/como-virtual-dom-funciona/como-virtual-dom-funciona.md)
+- [Como o Code128 funciona?](posts/como-cod128-funciona/como-cod128-funciona.md)
