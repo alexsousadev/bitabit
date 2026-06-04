@@ -1,0 +1,16 @@
+diff --git a/docs/dev-hour/posts/como-cod128-funciona/como-cod128-funciona.md b/docs/dev-hour/posts/como-cod128-funciona/como-cod128-funciona.md
+index 6b424cb..d0461ea 100644
+--- a/docs/dev-hour/posts/como-cod128-funciona/como-cod128-funciona.md
++++ b/docs/dev-hour/posts/como-cod128-funciona/como-cod128-funciona.md
+@@ -11,9 +11,9 @@ E o melhor de tudo: ele tem tamanho variável. Você pode gerar um código para
+ 
+ # Entendendo o funcionamento
+ 
+-Assim como o código de barras tradicional (UPC-A), o Code 128 também é dividido em barras, que chamamos de módulos. Cada caractere escrito **é composto por exatamente 11 módulos (apenas um que não)**.
++Assim como o código de barras tradicional (UPC-A), o Code 128 também é dividido em barras, que chamamos de módulos. Cada caractere escrito aqui **é composto por exatamente 11 módulos (apenas um que não)**.
+ 
+-Esses módulos não são aleatórios. Eles são divididos em 7 seções estritas que o leitor a laser decodifica da esquerda para a direita (ou vice-versa!):
++Esses módulos não são aleatórios. Eles são divididos em 7 seções estritas que o leitor a laser decodifica da esquerda para a direita (ou vice-versa):
+ 
+ <figure markdown="span">
+   ![](./img/code128.webp){ align=center, width="500"}
