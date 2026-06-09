@@ -52,11 +52,8 @@ markdown_extensions:
       generic: true
 
 plugins: 
-  - search
-  - blog:
-  - tags:
-      tags_file: tags.md
   - i18n:
+      reconfigure_material: true
       languages:
         - locale: pt
           name: Português
@@ -65,11 +62,18 @@ plugins:
         - locale: en
           name: English
           build: true
+  - blog:
+  - search
+  - tags:
+      tags_file: tags.md
 nav:
   - Início: index.md
   - Sobre: about.md
   - Blog: blog/index.md
-  - DevHour: dev-hour
+  - DevHour: dev-hour/index.md
+
+hooks:
+  - docs/hooks/blog_fix.py
 
 extra_javascript:
   - javascripts/mathjax.js

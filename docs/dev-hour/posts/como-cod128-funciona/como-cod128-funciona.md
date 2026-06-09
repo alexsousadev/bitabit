@@ -1,6 +1,6 @@
 
 # Como funciona o Code 128
-No nosso último post, [nós desvendamos os segredos dos códigos de barras tradicionais (como o UPC-A e o EAN-13) e vimos como eles são incríveis para os supermercados.](../como-codbarras-funciona/como-codbarras-funciona.md) Mas você já deve ter reparado em uma coisa: eles têm uma limitação severa. Eles só aceitam números e têm um tamanho estritamente fixo.
+No nosso último post, [nós desvendamos os segredos dos códigos de barras tradicionais (como o UPC-A e o EAN-13) e vimos como eles são incríveis para os supermercados.](../../../blog/posts/2026-05-06_cod_barras/como-codbarras-funciona/como-codbarras-funciona.md) Mas você já deve ter reparado em uma coisa: eles têm uma limitação severa. Eles só aceitam números e têm um tamanho estritamente fixo.
 
 Agora, imagine o desafio de uma empresa como a Amazon ou os Correios. Como colocar o código de rastreio BR123456789X, o ID de um contêiner ou o nome de um funcionário em um crachá usando apenas barras verticais?
 
@@ -48,7 +48,7 @@ Diferente do UPC-A, onde cada número ocupa 7 espacinhos (módulos), **no Code 1
 
 - Para o leitor não se perder, a soma das larguras das barras pretas é sempre um número par (4, 6 ou 8), e a dos espaços brancos é sempre um número ímpar (3, 5 ou 7).
 
-## 1) A "Mágica" dos Modos
+## 1) A "Mágica" dos Modos {: #1-a-mágica-dos-modos }
 
 Antes de falar da estrutura física, é importante entender o grande problema que o Code 128 resolve de forma inteligente. O Code 128 precisa representar todos os 128 caracteres ASCII (letras maiúsculas, minúsculas, números, símbolos e caracteres de controle). Porém, o código não tem 128 padrões físicos diferentes de barras. [Na verdade, segundo a especificação oficial (ISO/IEC 15417:2007), o Code 128 possui 108 símbolos no total:](https://www.iso.org/standard/43896.html)
 
