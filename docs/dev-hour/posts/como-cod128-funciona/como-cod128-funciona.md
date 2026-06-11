@@ -154,9 +154,19 @@ Agora, precisamos pegar os valores na tabela oficial para as letras 'o' e 'i' us
 | 111 | 79 | o | `10001111010` | `134111` |
 | 105 | 73 | i | `10000110100` | `142112` |
 
-Então, a nossa sequência de valores até agora é: [104, 79, 73].
+Então, a nossa sequência de valores até agora é: [104, 79, 73]. Em binário, teremos:
 
-Antes de desenhar as barras, precisamos calcular o símbolo de verificação (checksum) para garantir que a leitura seja segura. Lembra da regra dos pesos? Multiplicamos o valor de cada caractere pela sua posição na fila (o Start não é multiplicado por nada, ele entra com peso 1):
+- 104 - `11010010000` ("start")
+- 79 - `10001111010` ("o")
+- 73 - `10000110100` ("i")
+
+Podemos ver isso em barras na imagem abaixo:
+
+<figure markdown="span">
+  ![](./img/oi.png){ align=center, width="500"}
+</figure>
+
+Agora, precisamos calcular o dígito verificador (checksum) para garantir que a leitura seja segura. Lembra da regra dos pesos? Multiplicamos o valor de cada caractere pela sua posição na fila (o Start não é multiplicado por nada):
 
 | Caractere | Valor do Símbolo | Posição (Peso) | Valor × Peso |
 | :---: | :---: | :---: | :---: |
@@ -173,34 +183,39 @@ O resto da divisão foi 20. [Olhando na tabela oficial, o valor 20 corresponde a
 
 | Valor | Posição | Caractere (Latin-1) | Padrão de Barras | Larguras |
 | :---: | :---: | :---: | :---: | :---: |
-| 20 | 16 | 4 | `11011001110` | `221231` |
+| 20 | 16 | 4 | `11001001110` | `221231` |
 
-Esse será o nosso dígito verificador! Então, a nossa sequência de valores até agora é: [104, 79, 73, 20].
+Mais uma vez, convertendo isso em barras, teremos o padrão abaixo:
 
-Para finalizar, precisamos incluir o símbolo de Stop. Olhando na tabela oficial, o valor 106 corresponde ao símbolo de Stop:
+<figure markdown="span">
+  ![](./img/checksum.png){ align=center, width="300"}
+</figure>
+
+Para finalizar, precisamos incluir o símbolo de Stop. [Olhando na tabela oficial, o valor 106 corresponde ao símbolo de Stop:](./topicos/tabela-valores.md)
 
 | Valor | Caractere (Latin-1) | Padrão de Barras | Larguras |
 | :---: | :---: | :---: | :---: |
 | 106 | j | `11000111010` | `233111` |
 
+No entanto, como já foi falado na explicação inicial, o caractere de stop possui 13 módulos, mas se contar os dígito do valor 106, temos apenas 11 dígitos. Isso acontece porque é adicionado uma barra extra de 2 módulos, formando o Stop Pattern. Com isso, o caractere final fica sendo: `11000111010` + `11`:
 
-Então, a nossa sequência de valores para o código de barras "oi" é: [104, 79, 73, 20, 106]. Agora que já temos os valores, podemos converter em barras e ter o nosso código de barras pronto para ser impresso.resultado final seria algo parecido com isso:
-
-
-```ts
-11010010000 11000010100 11110010100 11001001110 1100011101011
- ██ ███ ████ ██████ ███  ██████ ███  ████ ██ ███ █████ ███ █ ██
- ██ ███ ████ ██████ ███  ██████ ███  ████ ██ ███ █████ ███ █ ██
- ██ ███ ████ ██████ ███  ██████ ███  ████ ██ ███ █████ ███ █ ██
- ██ ███ ████ ██████ ███  ██████ ███  ████ ██ ███ █████ ███ █ ██
- ██ ███ ████ ██████ ███  ██████ ███  ████ ██ ███ █████ ███ █ ██
-   [Start B]     [ o ]       [ i ]     [Check: 20]    [Stop]
-```
+<figure markdown="span">
+  ![](./img/stop.png){ align=center, width="300"}
+</figure>
 
 
+Então, a nossa sequência de valores para o código de barras "oi" é: [104, 79, 73, 20, 106]. No fim, juntando tudo, o código de barras fica assim:
 
-
-
-
+<figure markdown="span">
+  ![](./img/oi.svg){ align=center, width="300"}
+</figure>
 
 ---
+
+## Conclusão
+
+O **Code 128** é um verdadeiro triunfo de engenharia e otimização matemática. Ao dividir os 128 caracteres ASCII em três conjuntos dinâmicos e usar um sistema de "marchas" (os comandos de mudança de modo), ele conseguiu contornar as limitações físicas dos leitores ópticos da sua época sem sacrificar a flexibilidade.
+
+Hoje, mesmo dividindo espaço com tecnologias bidimensionais como o QR Code, o Code 128 continua sendo o padrão absoluto em etiquetas de envio (como as dos Correios e da DHL), crachás de identificação e logística industrial. Sua simplicidade linear, alta densidade numérica e robustez garantem que ele continue operando silenciosamente nos bastidores do comércio global.
+
+Em futuros posts, daremos um salto dimensional: vamos entender como saímos das linhas unidimensionais e chegamos aos códigos bidimensionais: os **QR Codes**. Aguardem!
