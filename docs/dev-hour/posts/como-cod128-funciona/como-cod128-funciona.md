@@ -188,7 +188,7 @@ O resto da divisão foi 20. [Olhando na tabela oficial, o valor 20 corresponde a
 Mais uma vez, convertendo isso em barras, teremos o padrão abaixo:
 
 <figure markdown="span">
-  ![](./img/checksum.png){ align=center, width="300"}
+  ![](./img/checksum.png){ align=center, width="200"}
 </figure>
 
 Para finalizar, precisamos incluir o símbolo de Stop. [Olhando na tabela oficial, o valor 106 corresponde ao símbolo de Stop:](./topicos/tabela-valores.md)
@@ -200,16 +200,15 @@ Para finalizar, precisamos incluir o símbolo de Stop. [Olhando na tabela oficia
 No entanto, como já foi falado na explicação inicial, o caractere de stop possui 13 módulos, mas se contar os dígito do valor 106, temos apenas 11 dígitos. Isso acontece porque é adicionado uma barra extra de 2 módulos, formando o Stop Pattern. Com isso, o caractere final fica sendo: `11000111010` + `11`:
 
 <figure markdown="span">
-  ![](./img/stop.png){ align=center, width="300"}
+  ![](./img/stop.png){ align=center, width="200"}
 </figure>
 
 
 Então, a nossa sequência de valores para o código de barras "oi" é: [104, 79, 73, 20, 106]. No fim, juntando tudo, o código de barras fica assim:
 
 <figure markdown="span">
-  ![](./img/oi.svg){ align=center, width="300"}
+  ![](./img/oi_128.png){ align=center, width="700"}
 </figure>
-
 ---
 
 ## Conclusão
